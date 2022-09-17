@@ -1,0 +1,101 @@
+// app global css in SCSS form
+.doc-h2 {
+  font-size: 1rem;
+  line-height: 2rem;
+  padding: 0 0;
+  font-weight: 600;
+  border-bottom: 1px solid #ccc;
+  margin: 1rem 0 1.5rem;
+}
+
+.doc-heading {
+  color: $title-color;
+  cursor: pointer;
+}
+
+.text-gray {
+  color: $footer-text-color;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+li {
+  padding-top: 10px;
+}
+
+.q-page {
+  min-height: auto !important;
+}
+
+.q-layout {
+  background-color: $bg-page;
+}
+
+// Table
+.my-sticky-header-column-table {
+  /* height or max-height is important */
+  height: calc(100vh - 262px);
+  // height: 400px;
+
+  /* specifying max-width so the example can
+    highlight the sticky column on any browser window */
+  // max-width: 600px;
+
+  tr th {
+    position: sticky;
+    z-index: 2;
+    background: #2f3136;
+  }
+  thead tr:last-child th {
+    top: 48px;
+    z-index: 3;
+  }
+
+  thead tr:first-child th {
+    top: 0;
+    z-index: 1;
+  }
+
+  tr:first-child th:first-child {
+    z-index: 3;
+  }
+
+  td:first-child {
+    z-index: 1;
+  }
+
+  td:first-child,
+  th:first-child {
+    position: sticky;
+    left: 0;
+  }
+}
+
+.minor {
+  .q-table tbody td {
+    font-size: 10px !important;
+  }
+}
+
+.fill {
+  height: calc(100vh - 193px);
+}
+
+
+//Colors
+.bg-page {
+  background-color: $bg-page;
+}
+
+.bg-drawer {
+  background-color: $bg-drawer;
+  border-right: none !important;
+}
+
+.q-drawer {
+  border-right: none !important;
+}
+
+body.body--dark {
+  background: #000;
+}
