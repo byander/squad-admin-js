@@ -1,8 +1,7 @@
-import { CapturePoint } from "./capturePoint";
-import { Cluster } from "./cluster";
-import { Lane } from "./lane";
-import { Queue } from "queue-typescript";
-import * as cluster from "cluster";
+import { CapturePoint } from './capturePoint';
+import { Cluster } from './cluster';
+import { Lane } from './lane';
+import { Queue } from 'queue-typescript';
 
 class MapData {
   public capturePoints: Set<CapturePoint> = new Set();
@@ -135,18 +134,18 @@ class MapData {
     // - there are always 2 mains
     // - the main clusters are always on all lanes
     if (this.mains.size !== 2) {
-      throw "amount of mains is not 2";
+      throw 'amount of mains is not 2';
     }
 
     const [mainA, mainB] = Array.from(this.mains);
-    let startMain = this.ownMain;
+    const startMain = this.ownMain;
     let endMain = mainA;
     if (this.ownMain === mainA) {
       endMain = mainB;
     }
 
-    let startCluster = Array.from(startMain.clusters)[0];
-    let endCluster = Array.from(endMain.clusters)[0];
+    const startCluster = Array.from(startMain.clusters)[0];
+    const endCluster = Array.from(endMain.clusters)[0];
 
     this.lanes.forEach((lane) => {
       const visited: Set<Cluster> = new Set();
@@ -197,4 +196,10 @@ class MapData {
   }
 }
 
-export const mapData: MapData = new MapData();
+export default function mapData() {
+  const mapData = new MapData();
+  return mapData;
+}
+
+// export const mapData: MapData = new MapData();
+

@@ -1,5 +1,5 @@
-import { Lane } from "./lane";
-import { CapturePoint } from "./capturePoint";
+import { Lane } from './lane';
+import { CapturePoint } from './capturePoint';
 
 export class Cluster {
   public readonly name: string;

@@ -15,7 +15,7 @@ Al Basrah:
                 y: -69799.015625
             01-CaptureZoneCluster:
             -   display_name: Ruins
-                sdk_name: Ruins
+                sdk_name: RuinsWarlord
                 x: -84007.4921875
                 y: 10320.5234375
             02-CaptureZoneCluster:
@@ -28,7 +28,7 @@ Al Basrah:
                 sdk_name: PoppyProduction
                 x: -54764.84375
                 y: 35760.15625
-            -   display_name: Warlord's Compound
+            -   display_name: Warlords Compound
                 sdk_name: WarlordsCompound
                 x: -38742.09765625
                 y: 46751.796875
@@ -514,7 +514,7 @@ Al Basrah:
                 sdk_name: NorthMosqueApartments
                 x: 32223.890625
                 y: 42294.5625
-            -   display_name: Warlord's Compound
+            -   display_name: Warlords Compound
                 sdk_name: WarlordsCompound
                 x: -38255.0078125
                 y: 46615.3046875
@@ -650,7 +650,7 @@ Al Basrah:
                 sdk_name: PoppyProduction
                 x: -55442.7265625
                 y: 35826.171875
-            -   display_name: Warlord's Compound
+            -   display_name: Warlords Compound
                 sdk_name: WarlordsCompound
                 x: -38432.0234375
                 y: 46524.078125
@@ -1200,7 +1200,7 @@ Anvil:
                 x: -109824.0
                 y: -97165.0
             04C-BP_CaptureZoneCluster:
-            -   display_name: Hermit's Estate
+            -   display_name: Hermits Estate
                 sdk_name: HermitsEstate
                 x: -119708.0
                 y: 45869.99609375
@@ -1213,7 +1213,7 @@ Anvil:
                 x: -46708.0
                 y: 54369.99609375
             04E-BP_CaptureZoneCluster:
-            -   display_name: Hermit's Estate
+            -   display_name: Hermits Estate
                 sdk_name: HermitsEstate
                 x: -119708.0
                 y: 45869.9921875
@@ -1226,7 +1226,7 @@ Anvil:
                 x: -46708.0
                 y: 54369.9921875
             04W-BP_CaptureZoneCluster:
-            -   display_name: Hermit's Estate
+            -   display_name: Hermits Estate
                 sdk_name: HermitsEstate
                 x: -119708.00390625
                 y: 45869.99609375
@@ -1399,7 +1399,7 @@ Anvil:
                 x: -163913.00390625
                 y: -35045.0
             09-BP_CaptureZoneCluster:
-            -   display_name: Hermit's Estate
+            -   display_name: Hermits Estate
                 sdk_name: HermitsEstate
                 x: -119556.00390625
                 y: 45977.9921875
@@ -1613,7 +1613,7 @@ Anvil:
                 x: -109824.0
                 y: -97165.0
             04C-BP_CaptureZoneCluster:
-            -   display_name: Hermit's Estate
+            -   display_name: Hermits Estate
                 sdk_name: HermitsEstate
                 x: -119708.0
                 y: 45869.99609375
@@ -1626,7 +1626,7 @@ Anvil:
                 x: -46708.0
                 y: 54369.99609375
             04E-BP_CaptureZoneCluster:
-            -   display_name: Hermit's Estate
+            -   display_name: Hermits Estate
                 sdk_name: HermitsEstate
                 x: -119708.0
                 y: 45869.9921875
@@ -1639,7 +1639,7 @@ Anvil:
                 x: -46708.0
                 y: 54369.9921875
             04W-BP_CaptureZoneCluster:
-            -   display_name: Hermit's Estate
+            -   display_name: Hermits Estate
                 sdk_name: HermitsEstate
                 x: -119708.00390625
                 y: 45869.99609375
@@ -1812,7 +1812,7 @@ Anvil:
                 x: -163913.00390625
                 y: -35045.0
             09-BP_CaptureZoneCluster:
-            -   display_name: Hermit's Estate
+            -   display_name: Hermits Estate
                 sdk_name: HermitsEstate
                 x: -119556.00390625
                 y: 45977.9921875
@@ -4538,7 +4538,7 @@ Chora:
                 x: -74972.001953125
                 y: -74394.0
             04-BP_CaptureZoneCluster:
-            -   display_name: Abdul's Farm
+            -   display_name: Abduls Farm
                 sdk_name: AbdulsFarm
                 x: -115097.767578125
                 y: -67858.9765625
@@ -4801,7 +4801,7 @@ Chora:
                 x: -91002.8046875
                 y: -25444.736328125
             04N-BP_CaptureZoneCluster:
-            -   display_name: Abdul's Farm
+            -   display_name: Abduls Farm
                 sdk_name: AbdulsFarm
                 x: -115073.81640625
                 y: -67752.4609375
@@ -5122,7 +5122,7 @@ Chora:
                 x: -91002.8046875
                 y: -25444.736328125
             04N-BP_CaptureZoneCluster:
-            -   display_name: Abdul's Farm
+            -   display_name: Abduls Farm
                 sdk_name: AbdulsFarm
                 x: -115073.81640625
                 y: -67752.4609375
@@ -5311,7 +5311,7 @@ Chora:
                 x: -74524.5234375
                 y: -90672.8046875
             04-BP_CaptureZoneCluster:
-            -   display_name: Abdul's Farm
+            -   display_name: Abduls Farm
                 sdk_name: AbdulsFarm
                 x: -115073.8125
                 y: -67752.4609375
@@ -5862,7 +5862,7 @@ Fallujah:
                 sdk_name: CentralCrossRoads
                 x: -26579.61328125
                 y: -4379.828125
-            -   display_name: ' Cross Roads North Apartments'
+            -   display_name:  Cross Roads North Apartments
                 sdk_name: CrossRoadsNorthApartments
                 x: -32117.994140625
                 y: -7523.634765625
@@ -6291,7 +6291,7 @@ Fallujah:
                 sdk_name: CentralCrossRoads
                 x: -26579.61328125
                 y: -4379.828125
-            -   display_name: ' Cross Roads North Apartments'
+            -   display_name:  Cross Roads North Apartments
                 sdk_name: CrossRoadsNorthApartments
                 x: -32117.994140625
                 y: -7523.634765625
@@ -6904,7 +6904,7 @@ Fools Road:
                 x: -14221.0
                 y: -33883.9921875
             03-CaptureZoneCluster:
-            -   display_name: Darko's Homestead
+            -   display_name: Darkos Homestead
                 sdk_name: DarkosHomestead
                 x: -72538.0
                 y: -81428.0
@@ -7014,7 +7014,7 @@ Fools Road:
                 sdk_name: Fortress
                 x: -99173.421875
                 y: -99763.69921875
-            -   display_name: Logger's Homestead
+            -   display_name: Loggers Homestead
                 sdk_name: LoggersHomestead
                 x: -72538.0
                 y: -81427.99609375
@@ -7348,7 +7348,7 @@ Fools Road:
                 sdk_name: Fortress
                 x: -99173.421875
                 y: -99763.69921875
-            -   display_name: Logger's Homestead
+            -   display_name: Loggers Homestead
                 sdk_name: LoggersHomestead
                 x: -72538.0
                 y: -81427.99609375
@@ -8677,7 +8677,7 @@ Gorodok:
                 x: -28539.6796875
                 y: 16926.75
             04-BP_CaptureZoneCluster:
-            -   display_name: Pavlov's Farm
+            -   display_name: Pavlovs Farm
                 sdk_name: PavlovsFarm
                 x: 42921.21484375
                 y: 141353.125
@@ -8686,7 +8686,7 @@ Gorodok:
                 x: 5199.8125
                 y: 108053.0
             05-BP_CaptureZoneCluster:
-            -   display_name: Boris' Farmstead
+            -   display_name: Boris Farmstead
                 sdk_name: BorisFarmstead
                 x: 103830.53125
                 y: 54303.53125
@@ -8769,7 +8769,7 @@ Gorodok:
                 x: -28539.6796875
                 y: 16926.75
             04-BP_CaptureZoneCluster:
-            -   display_name: Pavlov's Farm
+            -   display_name: Pavlovs Farm
                 sdk_name: PavlovsFarm
                 x: 42921.21484375
                 y: 141353.125
@@ -8778,7 +8778,7 @@ Gorodok:
                 x: 5199.8125
                 y: 108053.0
             05-BP_CaptureZoneCluster:
-            -   display_name: Boris' Farmstead
+            -   display_name: Boris Farmstead
                 sdk_name: BorisFarmstead
                 x: 103270.046875
                 y: 53523.59375
@@ -8850,7 +8850,7 @@ Gorodok:
                 x: -99064.9296875
                 y: 74285.90625
             02C-BP_CaptureZoneCluster:
-            -   display_name: Igor's Homestead
+            -   display_name: Igors Homestead
                 sdk_name: IgorsHomestead
                 x: -30789.8203125
                 y: 75571.0625
@@ -8867,7 +8867,7 @@ Gorodok:
                 x: -17048.640625
                 y: 51590.734375
             02E-BP_CaptureZoneCluster:
-            -   display_name: Igor's Homestead
+            -   display_name: Igors Homestead
                 sdk_name: IgorsHomestead
                 x: -30789.8203125
                 y: 75571.0625
@@ -8880,7 +8880,7 @@ Gorodok:
                 x: 9879.71875
                 y: 104218.125
             02W-BP_CaptureZoneCluster:
-            -   display_name: Boar Hunter's Club
+            -   display_name: Boar Hunters Club
                 sdk_name: BoarHuntersClub
                 x: -118077.265625
                 y: -10424.9453125
@@ -8906,7 +8906,7 @@ Gorodok:
                 sdk_name: FortifiedFarmstead
                 x: 62648.203125
                 y: 81787.4375
-            -   display_name: Pavlov's Farm
+            -   display_name: Pavlovs Farm
                 sdk_name: PavlovsFarm
                 x: 42999.453125
                 y: 142541.65625
@@ -8972,7 +8972,7 @@ Gorodok:
                 x: 73569.59375
                 y: -39007.03125
             05E-BP_CaptureZoneCluster:
-            -   display_name: Boris' Farmstead
+            -   display_name: Boris Farmstead
                 sdk_name: BorisFarmstead
                 x: 102756.015625
                 y: 53861.0
@@ -9003,7 +9003,7 @@ Gorodok:
                 x: 72247.875
                 y: -94599.4609375
             06E-BP_CaptureZoneCluster:
-            -   display_name: Butcher's House
+            -   display_name: Butchers House
                 sdk_name: ButchersHouse
                 x: 120411.546875
                 y: -17195.34375
@@ -9020,7 +9020,7 @@ Gorodok:
                 sdk_name: AkimLower
                 x: 72247.875
                 y: -94599.4609375
-            -   display_name: Mechanic's Homestead
+            -   display_name: Mechanics Homestead
                 sdk_name: MechanicsHomestead
                 x: 16785.42578125
                 y: -117201.8125
@@ -9139,7 +9139,7 @@ Gorodok:
                 x: -99064.9296875
                 y: 74285.890625
             02-BP_CaptureZoneCluster:
-            -   display_name: Pavlov's Farm
+            -   display_name: Pavlovs Farm
                 sdk_name: PavlovsFarm
                 x: 42999.453125
                 y: 142541.65625
@@ -9156,7 +9156,7 @@ Gorodok:
                 x: 9879.71875
                 y: 104218.1328125
             03-BP_CaptureZoneCluster:
-            -   display_name: Boris' Farmstead
+            -   display_name: Boris Farmstead
                 sdk_name: BorisFarmstead
                 x: 102756.0
                 y: 53860.9921875
@@ -9278,7 +9278,7 @@ Gorodok:
                 x: -55045.09375
                 y: 189030.65625
             01-BP_CaptureZoneCluster:
-            -   display_name: Pavlov's Farm
+            -   display_name: Pavlovs Farm
                 sdk_name: PavlovsFarm
                 x: 42999.453125
                 y: 142541.65625
@@ -9304,12 +9304,12 @@ Gorodok:
                 x: 133479.75
                 y: 111957.75
             03-BP_CaptureZoneCluster:
-            -   display_name: Boris' Farmstead
+            -   display_name: Boris Farmstead
                 sdk_name: BorisFarmstead
                 x: 102756.0
                 y: 53861.0
             04-BP_CaptureZoneCluster:
-            -   display_name: Butcher's House
+            -   display_name: Butchers House
                 sdk_name: ButchersHouse
                 x: 120635.265625
                 y: -16535.05078125
@@ -9399,7 +9399,7 @@ Gorodok:
                 x: -78947.109375
                 y: 37787.859375
             05-BP_CaptureZoneCluster:
-            -   display_name: Boar Hunter's Club
+            -   display_name: Boar Hunters Club
                 sdk_name: BoarHuntersClub
                 x: -118209.921875
                 y: -10429.71875
@@ -9449,7 +9449,7 @@ Gorodok:
                 x: -98521.9140625
                 y: 73838.109375
             02-BP_CaptureZoneCluster:
-            -   display_name: Pavlov's Farm
+            -   display_name: Pavlovs Farm
                 sdk_name: PavlovsFarm
                 x: 42999.453125
                 y: 142541.640625
@@ -9553,7 +9553,7 @@ Gorodok:
                 x: -99064.921875
                 y: 74285.90625
             02C-BP_CaptureZoneCluster:
-            -   display_name: Igor's Homestead
+            -   display_name: Igors Homestead
                 sdk_name: IgorsHomestead
                 x: -30789.8203125
                 y: 75571.0625
@@ -9566,7 +9566,7 @@ Gorodok:
                 x: -19645.376953125
                 y: 53437.39453125
             02E-BP_CaptureZoneCluster:
-            -   display_name: Pavlov's Farm
+            -   display_name: Pavlovs Farm
                 sdk_name: PavlovsFarm
                 x: 42999.453125
                 y: 142541.65625
@@ -9583,7 +9583,7 @@ Gorodok:
                 x: 9879.71875
                 y: 104218.125
             02W-BP_CaptureZoneCluster:
-            -   display_name: Boar Hunter's Club
+            -   display_name: Boar Hunters Club
                 sdk_name: BoarHuntersClub
                 x: -118077.265625
                 y: -10424.94921875
@@ -9605,7 +9605,7 @@ Gorodok:
                 x: -29473.7578125
                 y: 13205.921875
             03E-BP_CaptureZoneCluster:
-            -   display_name: Boris' Farmstead
+            -   display_name: Boris Farmstead
                 sdk_name: BorisFarmstead
                 x: 102756.015625
                 y: 53861.0
@@ -9670,7 +9670,7 @@ Gorodok:
                 sdk_name: AmbushHill
                 x: -24845.671875
                 y: -88489.78125
-            -   display_name: Mechanic's Homestead
+            -   display_name: Mechanics Homestead
                 sdk_name: MechanicsHomestead
                 x: 16785.4267578125
                 y: -117201.8125
@@ -9683,7 +9683,7 @@ Gorodok:
                 x: -17346.828125
                 y: -120177.28125
             06E-BP_CaptureZoneCluster:
-            -   display_name: Butcher's House
+            -   display_name: Butchers House
                 sdk_name: ButchersHouse
                 x: 121398.234375
                 y: -16587.3828125
@@ -9811,7 +9811,7 @@ Gorodok:
                 x: -99064.9296875
                 y: 74285.90625
             02C-BP_CaptureZoneCluster:
-            -   display_name: Igor's Homestead
+            -   display_name: Igors Homestead
                 sdk_name: IgorsHomestead
                 x: -30789.8203125
                 y: 75571.0625
@@ -9828,7 +9828,7 @@ Gorodok:
                 x: -17048.640625
                 y: 51590.734375
             02E-BP_CaptureZoneCluster:
-            -   display_name: Igor's Homestead
+            -   display_name: Igors Homestead
                 sdk_name: IgorsHomestead
                 x: -30789.8203125
                 y: 75571.0625
@@ -9841,7 +9841,7 @@ Gorodok:
                 x: 9879.71875
                 y: 104218.125
             02W-BP_CaptureZoneCluster:
-            -   display_name: Boar Hunter's Club
+            -   display_name: Boar Hunters Club
                 sdk_name: BoarHuntersClub
                 x: -118077.265625
                 y: -10424.9453125
@@ -9867,7 +9867,7 @@ Gorodok:
                 sdk_name: FortifiedFarmstead
                 x: 62648.203125
                 y: 81787.4375
-            -   display_name: Pavlov's Farm
+            -   display_name: Pavlovs Farm
                 sdk_name: PavlovsFarm
                 x: 42999.453125
                 y: 142541.65625
@@ -9933,7 +9933,7 @@ Gorodok:
                 x: 73569.59375
                 y: -39007.03125
             05E-BP_CaptureZoneCluster:
-            -   display_name: Boris' Farmstead
+            -   display_name: Boris Farmstead
                 sdk_name: BorisFarmstead
                 x: 102756.015625
                 y: 53861.0
@@ -9964,7 +9964,7 @@ Gorodok:
                 x: 72247.875
                 y: -94599.4609375
             06E-BP_CaptureZoneCluster:
-            -   display_name: Butcher's House
+            -   display_name: Butchers House
                 sdk_name: ButchersHouse
                 x: 120411.546875
                 y: -17195.34375
@@ -9981,7 +9981,7 @@ Gorodok:
                 sdk_name: AkimLower
                 x: 72247.875
                 y: -94599.4609375
-            -   display_name: Mechanic's Homestead
+            -   display_name: Mechanics Homestead
                 sdk_name: MechanicsHomestead
                 x: 16785.42578125
                 y: -117201.8125
@@ -10110,7 +10110,7 @@ Gorodok:
                 x: -99064.9296875
                 y: 74285.90625
             02C-BP_CaptureZoneCluster:
-            -   display_name: Igor's Homestead
+            -   display_name: Igors Homestead
                 sdk_name: IgorsHomestead
                 x: -30789.8203125
                 y: 75571.0625
@@ -10127,7 +10127,7 @@ Gorodok:
                 x: -17048.640625
                 y: 51590.734375
             02E-BP_CaptureZoneCluster:
-            -   display_name: Igor's Homestead
+            -   display_name: Igors Homestead
                 sdk_name: IgorsHomestead
                 x: -30789.8203125
                 y: 75571.0625
@@ -10140,7 +10140,7 @@ Gorodok:
                 x: 9879.71875
                 y: 104218.125
             02W-BP_CaptureZoneCluster:
-            -   display_name: Boar Hunter's Club
+            -   display_name: Boar Hunters Club
                 sdk_name: BoarHuntersClub
                 x: -118077.265625
                 y: -10424.9453125
@@ -10166,7 +10166,7 @@ Gorodok:
                 sdk_name: FortifiedFarmstead
                 x: 62648.203125
                 y: 81787.4375
-            -   display_name: Pavlov's Farm
+            -   display_name: Pavlovs Farm
                 sdk_name: PavlovsFarm
                 x: 42999.453125
                 y: 142541.65625
@@ -10232,7 +10232,7 @@ Gorodok:
                 x: 73569.59375
                 y: -39007.03125
             05E-BP_CaptureZoneCluster:
-            -   display_name: Boris' Farmstead
+            -   display_name: Boris Farmstead
                 sdk_name: BorisFarmstead
                 x: 102756.015625
                 y: 53861.0
@@ -10263,7 +10263,7 @@ Gorodok:
                 x: 72247.875
                 y: -94599.4609375
             06E-BP_CaptureZoneCluster:
-            -   display_name: Butcher's House
+            -   display_name: Butchers House
                 sdk_name: ButchersHouse
                 x: 120411.546875
                 y: -17195.34375
@@ -10280,7 +10280,7 @@ Gorodok:
                 sdk_name: AkimLower
                 x: 72247.875
                 y: -94599.4609375
-            -   display_name: Mechanic's Homestead
+            -   display_name: Mechanics Homestead
                 sdk_name: MechanicsHomestead
                 x: 16785.42578125
                 y: -117201.8125
@@ -10399,7 +10399,7 @@ Gorodok:
                 x: -99064.9296875
                 y: 74285.890625
             02-BP_CaptureZoneCluster:
-            -   display_name: Pavlov's Farm
+            -   display_name: Pavlovs Farm
                 sdk_name: PavlovsFarm
                 x: 42999.453125
                 y: 142541.65625
@@ -10416,7 +10416,7 @@ Gorodok:
                 x: 9879.71875
                 y: 104218.1328125
             03-BP_CaptureZoneCluster:
-            -   display_name: Boris' Farmstead
+            -   display_name: Boris Farmstead
                 sdk_name: BorisFarmstead
                 x: 102756.0
                 y: 53860.9921875
@@ -10561,7 +10561,7 @@ Gorodok:
                 x: -99064.9296875
                 y: 74285.90625
             02C-BP_CaptureZoneCluster:
-            -   display_name: Igor's Homestead
+            -   display_name: Igors Homestead
                 sdk_name: IgorsHomestead
                 x: -30789.8203125
                 y: 75571.0625
@@ -10578,7 +10578,7 @@ Gorodok:
                 x: -17048.640625
                 y: 51590.734375
             02E-BP_CaptureZoneCluster:
-            -   display_name: Igor's Homestead
+            -   display_name: Igors Homestead
                 sdk_name: IgorsHomestead
                 x: -30789.8203125
                 y: 75571.0625
@@ -10591,7 +10591,7 @@ Gorodok:
                 x: 9879.71875
                 y: 104218.125
             02W-BP_CaptureZoneCluster:
-            -   display_name: Boar Hunter's Club
+            -   display_name: Boar Hunters Club
                 sdk_name: BoarHuntersClub
                 x: -118077.265625
                 y: -10424.9453125
@@ -10617,7 +10617,7 @@ Gorodok:
                 sdk_name: FortifiedFarmstead
                 x: 62648.203125
                 y: 81787.4375
-            -   display_name: Pavlov's Farm
+            -   display_name: Pavlovs Farm
                 sdk_name: PavlovsFarm
                 x: 42999.453125
                 y: 142541.65625
@@ -10683,7 +10683,7 @@ Gorodok:
                 x: 73569.59375
                 y: -39007.03125
             05E-BP_CaptureZoneCluster:
-            -   display_name: Boris' Farmstead
+            -   display_name: Boris Farmstead
                 sdk_name: BorisFarmstead
                 x: 102756.015625
                 y: 53861.0
@@ -10714,7 +10714,7 @@ Gorodok:
                 x: 72247.875
                 y: -94599.4609375
             06E-BP_CaptureZoneCluster:
-            -   display_name: Butcher's House
+            -   display_name: Butchers House
                 sdk_name: ButchersHouse
                 x: 120411.546875
                 y: -17195.34375
@@ -10731,7 +10731,7 @@ Gorodok:
                 sdk_name: AkimLower
                 x: 72247.875
                 y: -94599.4609375
-            -   display_name: Mechanic's Homestead
+            -   display_name: Mechanics Homestead
                 sdk_name: MechanicsHomestead
                 x: 16785.42578125
                 y: -117201.8125
@@ -10846,7 +10846,7 @@ Gorodok:
                 x: -99064.921875
                 y: 74285.90625
             02C-BP_CaptureZoneCluster_0:
-            -   display_name: Igor's Homestead
+            -   display_name: Igors Homestead
                 sdk_name: IgorsHomestead_32
                 x: -30789.8203125
                 y: 75571.0625
@@ -10863,7 +10863,7 @@ Gorodok:
                 x: -79428.498046875
                 y: 36729.171875
             02E-BP_CaptureZoneCluster_4:
-            -   display_name: Igor's Homestead
+            -   display_name: Igors Homestead
                 sdk_name: IgorsHomestead_23
                 x: -30789.8203125
                 y: 75571.0625
@@ -10876,7 +10876,7 @@ Gorodok:
                 x: 9879.71875
                 y: 104218.125
             02W-BP_CaptureZoneCluster_5:
-            -   display_name: Boar Hunter's Club
+            -   display_name: Boar Hunters Club
                 sdk_name: BoarHuntersClub_22
                 x: -118077.265625
                 y: -10424.94921875
@@ -10902,7 +10902,7 @@ Gorodok:
                 sdk_name: FortifiedFarmstead_5
                 x: 62648.203125
                 y: 81787.4375
-            -   display_name: Pavlov's Farm
+            -   display_name: Pavlovs Farm
                 sdk_name: PavlovsFarm_15
                 x: 42999.453125
                 y: 142541.65625
@@ -10968,7 +10968,7 @@ Gorodok:
                 x: 73569.59375
                 y: -39007.03125
             05E-BP_CaptureZoneCluster_10:
-            -   display_name: Boris' Farmstead
+            -   display_name: Boris Farmstead
                 sdk_name: BorisFarmstead_6
                 x: 102756.015625
                 y: 53861.0
@@ -10995,12 +10995,12 @@ Gorodok:
                 x: 72247.8671875
                 y: -94599.453125
             06E-BP_CaptureZoneCluster_12:
-            -   display_name: Butcher's House
+            -   display_name: Butchers House
                 sdk_name: ButchersHouse_25
                 x: 121398.234375
                 y: -16587.3828125
             06W-BP_CaptureZoneCluster_13:
-            -   display_name: Mechanic's Homestead
+            -   display_name: Mechanics Homestead
                 sdk_name: MechanicsHomestead_13
                 x: 16785.42578125
                 y: -117201.8125
@@ -11105,7 +11105,7 @@ Kamdesh Highlands:
                 x: -153539.0
                 y: 42571.546875
             01-CaptureZoneCluster:
-            -   display_name: Carpenter's Guild
+            -   display_name: Carpenters Guild
                 sdk_name: CarpentersGuild
                 x: -84773.4375
                 y: 84769.984375
@@ -11227,7 +11227,7 @@ Kamdesh Highlands:
                 sdk_name: Parun
                 x: -76177.75
                 y: -47891.99609375
-            -   display_name: Smuggler's Den
+            -   display_name: Smugglers Den
                 sdk_name: SmugglersDen
                 x: -50185.515625
                 y: -12998.44921875
@@ -11312,7 +11312,7 @@ Kamdesh Highlands:
                 x: -94446.0
                 y: 11838.546875
             02-BP_CaptureZoneCluster:
-            -   display_name: Smuggler's Den
+            -   display_name: Smugglers Den
                 sdk_name: SmugglersDen
                 x: -50057.8984375
                 y: -12657.0
@@ -11384,7 +11384,7 @@ Kamdesh Highlands:
                 x: -153539.0
                 y: 42571.546875
             01-CaptureZoneCluster:
-            -   display_name: Carpenter's Guild
+            -   display_name: Carpenters Guild
                 sdk_name: CarpentersGuild
                 x: -84773.4375
                 y: 84769.984375
@@ -11506,7 +11506,7 @@ Kamdesh Highlands:
                 sdk_name: Parun
                 x: -76177.75
                 y: -47891.99609375
-            -   display_name: Smuggler's Den
+            -   display_name: Smugglers Den
                 sdk_name: SmugglersDen
                 x: -50185.515625
                 y: -12998.44921875
@@ -11591,7 +11591,7 @@ Kamdesh Highlands:
                 x: -94446.0
                 y: 11838.546875
             02-BP_CaptureZoneCluster:
-            -   display_name: Smuggler's Den
+            -   display_name: Smugglers Den
                 sdk_name: SmugglersDen
                 x: -50057.8984375
                 y: -12657.0
@@ -11667,7 +11667,7 @@ Kamdesh Highlands:
                 sdk_name: Sao
                 x: -94466.3671875
                 y: 10547.05078125
-            -   display_name: Smuggler's Den
+            -   display_name: Smugglers Den
                 sdk_name: SmugglersDen
                 x: -49879.703125
                 y: -13809.765625
@@ -11840,7 +11840,7 @@ Kamdesh Highlands:
                 sdk_name: Sao
                 x: -93765.15625
                 y: 12279.1015625
-            -   display_name: Smuggler's Den
+            -   display_name: Smugglers Den
                 sdk_name: SmugglersDen
                 x: -51321.4375
                 y: -12649.4453125
@@ -11906,7 +11906,7 @@ Kamdesh Highlands:
                 x: 132835.296875
                 y: 120699.8125
             05W-BP_CaptureZoneCluster:
-            -   display_name: Carpenter's Guild
+            -   display_name: Carpenters Guild
                 sdk_name: CarpentersGuild
                 x: -85761.234375
                 y: 87649.8125
@@ -12060,7 +12060,7 @@ Kamdesh Highlands:
                 x: -93765.1640625
                 y: 12279.1015625
             06-BP_CaptureZoneCluster:
-            -   display_name: Carpenter's Guild
+            -   display_name: Carpenters Guild
                 sdk_name: CarpentersGuild
                 x: -85761.234375
                 y: 87649.8125
@@ -12183,7 +12183,7 @@ Kamdesh Highlands:
                 x: -93765.1640625
                 y: 12279.1015625
             06-BP_CaptureZoneCluster:
-            -   display_name: Carpenter's Guild
+            -   display_name: Carpenters Guild
                 sdk_name: CarpentersGuild
                 x: -85761.234375
                 y: 87649.8125
@@ -12266,7 +12266,7 @@ Kamdesh Highlands:
                 sdk_name: Paprok
                 x: -17416.640625
                 y: -43309.953125
-            -   display_name: Smuggler's Den
+            -   display_name: Smugglers Den
                 sdk_name: SmugglersDen
                 x: -50284.8515625
                 y: -12820.44140625
@@ -12426,7 +12426,7 @@ Kamdesh Highlands:
                 sdk_name: Sao
                 x: -93765.15625
                 y: 12279.1015625
-            -   display_name: Smuggler's Den
+            -   display_name: Smugglers Den
                 sdk_name: SmugglersDen
                 x: -51321.4375
                 y: -12649.4453125
@@ -12492,7 +12492,7 @@ Kamdesh Highlands:
                 x: 132835.296875
                 y: 120699.8125
             05W-BP_CaptureZoneCluster:
-            -   display_name: Carpenter's Guild
+            -   display_name: Carpenters Guild
                 sdk_name: CarpentersGuild
                 x: -85761.234375
                 y: 87649.8125
@@ -12681,7 +12681,7 @@ Kamdesh Highlands:
                 sdk_name: Sao
                 x: -93765.15625
                 y: 12279.1015625
-            -   display_name: Smuggler's Den
+            -   display_name: Smugglers Den
                 sdk_name: SmugglersDen
                 x: -51321.4375
                 y: -12649.4453125
@@ -12753,7 +12753,7 @@ Kamdesh Highlands:
                 x: -93765.15625
                 y: 12279.1015625
             C4-BP_CaptureZoneCluster:
-            -   display_name: Carpenter's Guild
+            -   display_name: Carpenters Guild
                 sdk_name: CarpentersGuild
                 x: -85761.234375
                 y: 87649.8125
@@ -12894,12 +12894,12 @@ Kamdesh Highlands:
                 sdk_name: Sao
                 x: -94664.8515625
                 y: 11159.55859375
-            -   display_name: Smuggler's Den
+            -   display_name: Smugglers Den
                 sdk_name: SmugglersDen
                 x: -50284.8515625
                 y: -12820.44140625
             03-BP_CaptureZoneCluster:
-            -   display_name: Carpenter's Guild
+            -   display_name: Carpenters Guild
                 sdk_name: CarpentersGuild
                 x: -82235.65625
                 y: 84684.546875
@@ -15483,7 +15483,7 @@ Kokan Valley:
                 sdk_name: FirstStand
                 x: 46298.0
                 y: 38013.0
-            -   display_name: Imam's Compound
+            -   display_name: Imams Compound
                 sdk_name: ImamsCompound
                 x: -17110.0
                 y: 61041.0
@@ -15603,7 +15603,7 @@ Kokan Valley:
                 sdk_name: FirstStand
                 x: 46298.0
                 y: 38013.0
-            -   display_name: Imam's Compound
+            -   display_name: Imams Compound
                 sdk_name: ImamsCompound
                 x: -17110.0
                 y: 61041.0
@@ -17574,7 +17574,7 @@ Logar Valley:
                 sdk_name: HempFarm
                 x: -19707.8984375
                 y: 8674.8203125
-            -   display_name: Muhammad's Compound
+            -   display_name: Muhammads Compound
                 sdk_name: MuhammadsCompound
                 x: -30912.26953125
                 y: 17060.83203125
@@ -17654,7 +17654,7 @@ Logar Valley:
                 sdk_name: Farm
                 x: 53438.02734375
                 y: -42580.8046875
-            -   display_name: Governor's Estate
+            -   display_name: Governors Estate
                 sdk_name: GovernorsEstate
                 x: 69533.703125
                 y: -43686.515625
@@ -17741,7 +17741,7 @@ Logar Valley:
                 sdk_name: AbandonedStorage
                 x: -36139.99609375
                 y: -56660.0
-            -   display_name: Akhtar's Compound
+            -   display_name: Akhtars Compound
                 sdk_name: AkhtarsCompound
                 x: -42992.72265625
                 y: 19638.0390625
@@ -17749,7 +17749,7 @@ Logar Valley:
                 sdk_name: DistrictHeights
                 x: -28279.53125
                 y: -19069.84375
-            -   display_name: Muhammad's Compound
+            -   display_name: Muhammads Compound
                 sdk_name: MuhammadsCompound
                 x: -30912.26953125
                 y: 17060.828125
@@ -17825,7 +17825,7 @@ Logar Valley:
                 sdk_name: Farm
                 x: 53438.02734375
                 y: -42580.8046875
-            -   display_name: Governor's Estate
+            -   display_name: Governors Estate
                 sdk_name: GovernorsEstate
                 x: 69533.703125
                 y: -43686.515625
@@ -17889,7 +17889,7 @@ Manic-5:
                 sdk_name: FirebasePentincton
                 x: -120734.328125
                 y: -107069.6640625
-            -   display_name: Prospector's Point
+            -   display_name: Prospectors Point
                 sdk_name: ProspectorsPoint
                 x: -106400.5859375
                 y: -59086.45703125
@@ -18120,7 +18120,7 @@ Manic-5:
                 sdk_name: Estate
                 x: -151009.16015625
                 y: -32618.2265625
-            -   display_name: Prospector's Point
+            -   display_name: Prospectors Point
                 sdk_name: ProspectorsPoint
                 x: -107169.16015625
                 y: -61704.2265625
@@ -18137,7 +18137,7 @@ Manic-5:
                 sdk_name: Estate
                 x: -151009.16015625
                 y: -32618.2265625
-            -   display_name: Prospector's Point
+            -   display_name: Prospectors Point
                 sdk_name: ProspectorsPoint
                 x: -107169.16015625
                 y: -61704.2265625
@@ -18150,7 +18150,7 @@ Manic-5:
                 sdk_name: DamStorageSite
                 x: -46987.578125
                 y: -120611.0078125
-            -   display_name: Prospector's Point
+            -   display_name: Prospectors Point
                 sdk_name: ProspectorsPoint
                 x: -107169.15625
                 y: -61704.2265625
@@ -18540,7 +18540,7 @@ Manic-5:
                 sdk_name: MaintenanceYard
                 x: -53684.05078125
                 y: -40707.0859375
-            -   display_name: Prospector's Point
+            -   display_name: Prospectors Point
                 sdk_name: ProspectorsPoint
                 x: -107169.15625
                 y: -61704.2265625
@@ -18828,7 +18828,7 @@ Manic-5:
                 sdk_name: Estate
                 x: -151009.16015625
                 y: -32618.2265625
-            -   display_name: Prospector's Point
+            -   display_name: Prospectors Point
                 sdk_name: ProspectorsPoint
                 x: -107169.16015625
                 y: -61704.2265625
@@ -18845,7 +18845,7 @@ Manic-5:
                 sdk_name: Estate
                 x: -151009.16015625
                 y: -32618.2265625
-            -   display_name: Prospector's Point
+            -   display_name: Prospectors Point
                 sdk_name: ProspectorsPoint
                 x: -107169.16015625
                 y: -61704.2265625
@@ -18858,7 +18858,7 @@ Manic-5:
                 sdk_name: DamStorageSite
                 x: -46987.578125
                 y: -120611.0078125
-            -   display_name: Prospector's Point
+            -   display_name: Prospectors Point
                 sdk_name: ProspectorsPoint
                 x: -107169.15625
                 y: -61704.2265625
@@ -19194,7 +19194,7 @@ Manic-5:
                 sdk_name: FirebasePenticton_1
                 x: -120264.23828125
                 y: -106134.25
-            -   display_name: Prospector's Point
+            -   display_name: Prospectors Point
                 sdk_name: ProspectorsPoint_2
                 x: -107169.16015625
                 y: -61704.2265625
@@ -20654,7 +20654,7 @@ Mutaha:
                 sdk_name: ChopShop
                 x: 103211.015625
                 y: 47976.90625
-            -   display_name: Elders' Suburb
+            -   display_name: Elders Suburb
                 sdk_name: EldersSuburb
                 x: 101980.4609375
                 y: 33779.53515625
@@ -22632,7 +22632,7 @@ Skorpo:
                 x: -47918.2734375
                 y: 14403.34375
             03N-CaptureZoneCluster:
-            -   display_name: Captain's Farm
+            -   display_name: Captains Farm
                 sdk_name: CaptainsFarm
                 x: 67086.125
                 y: 25479.546875
@@ -22671,7 +22671,7 @@ Skorpo:
                 x: 74692.46875
                 y: -45208.046875
             04S-CaptureZoneCluster:
-            -   display_name: Captain's Farm
+            -   display_name: Captains Farm
                 sdk_name: CaptainsFarm
                 x: 67086.140625
                 y: 25479.5546875
@@ -23405,7 +23405,7 @@ Skorpo:
                 x: 9205.3525390625
                 y: 54591.53125
             03S-CaptureZoneCluster:
-            -   display_name: Captain's farm
+            -   display_name: Captains farm
                 sdk_name: Captainsfarm
                 x: 65145.3671875
                 y: 23458.2890625
@@ -23583,7 +23583,7 @@ Skorpo:
                 x: -18241.3671875
                 y: 83154.3984375
             05-CaptureZoneCluster:
-            -   display_name: Captain's Farm
+            -   display_name: Captains Farm
                 sdk_name: CaptainsFarm
                 x: 67086.140625
                 y: 25479.5546875
@@ -23798,7 +23798,7 @@ Sumari:
                 sdk_name: TwoStory
                 x: -30972.0
                 y: 28761.0
-            -   display_name: Women's Mosque
+            -   display_name: Womens Mosque
                 sdk_name: WomensMosque
                 x: -41568.0
                 y: 31975.0
@@ -23910,7 +23910,7 @@ Sumari:
                 sdk_name: TwoStory
                 x: -30972.0
                 y: 28761.0
-            -   display_name: Women's Mosque
+            -   display_name: Womens Mosque
                 sdk_name: WomensMosque
                 x: -41568.0
                 y: 31975.0
@@ -24179,7 +24179,7 @@ Tallil Outskirts:
                 x: 107562.609375
                 y: 79343.125
             02-CaptureZoneCluster:
-            -   display_name: Fab's Olive Farm
+            -   display_name: Fabs Olive Farm
                 sdk_name: FabsOliveFarm
                 x: 183111.28125
                 y: 13597.8828125
@@ -25367,7 +25367,7 @@ Yehorivka:
                 sdk_name: ScrapYard
                 x: 3897.625
                 y: 23720.546875
-            -   display_name: Zeno's Homestead
+            -   display_name: Zenos Homestead
                 sdk_name: ZenosHomestead
                 x: 32855.21875
                 y: 22636.9375
@@ -25453,7 +25453,7 @@ Yehorivka:
                 sdk_name: Kropy
                 x: -86407.9375
                 y: -88267.0
-            -   display_name: Nomad's Homestead
+            -   display_name: Nomads Homestead
                 sdk_name: NomadsHomestead
                 x: -38868.5
                 y: -75620.5
@@ -25475,7 +25475,7 @@ Yehorivka:
                 sdk_name: Kropy
                 x: -86407.921875
                 y: -88266.9921875
-            -   display_name: Nomad's Homestead
+            -   display_name: Nomads Homestead
                 sdk_name: NomadsHomestead
                 x: -38868.5
                 y: -75620.5
@@ -25724,7 +25724,7 @@ Yehorivka:
                 sdk_name: ScrapYard
                 x: 3897.625
                 y: 23720.546875
-            -   display_name: Zeno's Homestead
+            -   display_name: Zenos Homestead
                 sdk_name: ZenosHomestead
                 x: 32855.21875
                 y: 22636.9375
@@ -25810,7 +25810,7 @@ Yehorivka:
                 sdk_name: Kropy
                 x: -86407.9375
                 y: -88267.0
-            -   display_name: Nomad's Homestead
+            -   display_name: Nomads Homestead
                 sdk_name: NomadsHomestead
                 x: -38868.5
                 y: -75620.5
@@ -25832,7 +25832,7 @@ Yehorivka:
                 sdk_name: Kropy
                 x: -86407.921875
                 y: -88266.9921875
-            -   display_name: Nomad's Homestead
+            -   display_name: Nomads Homestead
                 sdk_name: NomadsHomestead
                 x: -38868.5
                 y: -75620.5
@@ -26162,7 +26162,7 @@ Yehorivka:
                 sdk_name: ScrapYard_24
                 x: 3897.625
                 y: 23720.55078125
-            -   display_name: Zeno's Homestead
+            -   display_name: Zenos Homestead
                 sdk_name: ZenosHomestead_25
                 x: 32855.21875
                 y: 22636.94140625
@@ -26205,7 +26205,7 @@ Yehorivka:
                 sdk_name: LowerPetrivka
                 x: 19265.3359375
                 y: -55552.0625
-            -   display_name: Nomad's Homestead
+            -   display_name: Nomads Homestead
                 sdk_name: NomadsHomestead_1
                 x: -38868.5234375
                 y: -75620.5
@@ -26407,7 +26407,7 @@ Yehorivka:
                 sdk_name: ScrapYard_24
                 x: 3897.625
                 y: 23720.55078125
-            -   display_name: Zeno's Homestead
+            -   display_name: Zenos Homestead
                 sdk_name: ZenosHomestead_25
                 x: 32855.21875
                 y: 22636.94140625
@@ -26450,7 +26450,7 @@ Yehorivka:
                 sdk_name: LowerPetrivka_4
                 x: 19265.3359375
                 y: -55552.0625
-            -   display_name: Nomad's Homestead
+            -   display_name: Nomads Homestead
                 sdk_name: NomadsHomestead_6
                 x: -38868.5234375
                 y: -75620.5
@@ -26652,7 +26652,7 @@ Yehorivka:
                 sdk_name: ScrapYard_24
                 x: 3897.625
                 y: 23720.55078125
-            -   display_name: Zeno's Homestead
+            -   display_name: Zenos Homestead
                 sdk_name: ZenosHomestead_25
                 x: 32855.21875
                 y: 22636.94140625
@@ -26695,7 +26695,7 @@ Yehorivka:
                 sdk_name: LowerPetrivka_4
                 x: 19265.3359375
                 y: -55552.0625
-            -   display_name: Nomad's Homestead
+            -   display_name: Nomads Homestead
                 sdk_name: NomadsHomestead_6
                 x: -38868.5234375
                 y: -75620.5
@@ -26897,7 +26897,7 @@ Yehorivka:
                 sdk_name: ScrapYard
                 x: 3897.625
                 y: 23720.546875
-            -   display_name: Zeno's Homestead
+            -   display_name: Zenos Homestead
                 sdk_name: ZenosHomestead
                 x: 32855.21875
                 y: 22636.9375
@@ -26975,7 +26975,7 @@ Yehorivka:
                 sdk_name: Kropy
                 x: -86407.9375
                 y: -88267.0
-            -   display_name: Nomad's Homestead
+            -   display_name: Nomads Homestead
                 sdk_name: NomadsHomestead
                 x: -38868.5
                 y: -75620.5
@@ -26997,7 +26997,7 @@ Yehorivka:
                 sdk_name: Kropy
                 x: -86407.921875
                 y: -88266.9921875
-            -   display_name: Nomad's Homestead
+            -   display_name: Nomads Homestead
                 sdk_name: NomadsHomestead
                 x: -38868.5
                 y: -75620.5
@@ -27177,7 +27177,7 @@ Yehorivka:
                 sdk_name: ScrapYard
                 x: 3897.625
                 y: 23720.546875
-            -   display_name: Zeno's Homestead
+            -   display_name: Zenos Homestead
                 sdk_name: ZenosHomestead
                 x: 37861.53515625
                 y: 22401.35546875
@@ -27372,7 +27372,7 @@ Yehorivka:
                 sdk_name: ScrapYard_28
                 x: 3897.625
                 y: 23720.55078125
-            -   display_name: Zeno's Homestead
+            -   display_name: Zenos Homestead
                 sdk_name: ZenosHomestead_29
                 x: 32855.21875
                 y: 22636.94140625
@@ -27415,7 +27415,7 @@ Yehorivka:
                 sdk_name: LowerPetrivka_32
                 x: 19265.3359375
                 y: -55552.0625
-            -   display_name: Nomad's Homestead
+            -   display_name: Nomads Homestead
                 sdk_name: NomadsHomestead_34
                 x: -38868.5234375
                 y: -75620.5
@@ -27641,7 +27641,7 @@ Yehorivka:
                 sdk_name: ScrapYard
                 x: 3897.625
                 y: 23720.54296875
-            -   display_name: Zeno's Homestead
+            -   display_name: Zenos Homestead
                 sdk_name: ZenosHomestead
                 x: 37861.53515625
                 y: 22401.3515625

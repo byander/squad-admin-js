@@ -62,9 +62,9 @@
             <q-item-label>Rcon</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item to="/leader" active-class="q-item-no-link-highlighting">
+        <q-item to="/messages" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
-            <q-icon name="warning" />
+            <q-icon name="message" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Avisos</q-item-label>

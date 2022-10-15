@@ -10,33 +10,33 @@ import {
   polyline,
   TileLayer,
   Transformation,
-} from "leaflet";
-import { CapturePoint } from "./capturePoint";
-import { mapData } from "./mapData";
-import { Lane } from "./lane";
-import { LayerData } from "./raasData";
+} from 'leaflet';
+import { CapturePoint } from './capturePoint';
+import { mapData } from './mapData';
+import { Lane } from './lane';
+import { LayerData } from './raasData';
 import {
   getAllPossibleConfirmedPaths,
   getAllPossibleDepths,
-} from "./graphUtil";
+} from './graphUtil';
 
-const CLR_CONFIRMED = "rgb(0,255,13)";
-const CLR_ACTIVE = "rgb(176,255,148)";
-const CLR_MID_POINT = "rgb(186,0,255)";
-const CLR_DEF_POINT = "rgb(0,55,255)";
+const CLR_CONFIRMED = 'rgb(0,255,13)';
+const CLR_ACTIVE = 'rgb(176,255,148)';
+const CLR_MID_POINT = 'rgb(186,0,255)';
+const CLR_DEF_POINT = 'rgb(0,55,255)';
 const CLR_DEF_OTHER = [
-  "rgb(47,182,255)",
-  "rgb(145,245,220)",
-  "rgb(161,250,186)",
+  'rgb(47,182,255)',
+  'rgb(145,245,220)',
+  'rgb(161,250,186)',
 ];
-const CLR_OFF_POINT = "rgb(255,0,0)";
+const CLR_OFF_POINT = 'rgb(255,0,0)';
 const CLR_OFF_OTHER = [
-  "rgb(255,162,92)",
-  "rgb(252,227,108)",
-  "rgb(253,246,203)",
+  'rgb(255,162,92)',
+  'rgb(252,227,108)',
+  'rgb(253,246,203)',
 ];
-const CLR_IMPOSSIBLE = "rgb(145,145,145)";
-const CLR_MAIN_BASE = "rgb(0,0,0)";
+const CLR_IMPOSSIBLE = 'rgb(145,145,145)';
+const CLR_MAIN_BASE = 'rgb(0,0,0)';
 
 const CLR_PRIORITY = {
   // priority 99 means that caps aren't eligible for other colours anyway
@@ -93,7 +93,7 @@ let circleMarkerByCapturePoint: Map<CapturePoint, CircleMarker> = new Map();
 
 let renderInfos: Map<CircleMarker, CPRenderInfo> = new Map();
 
-let confirmationLines: Set<Polyline> = new Set();
+const confirmationLines: Set<Polyline> = new Set();
 
 let confirmablePoints: Set<CircleMarker> = new Set();
 
@@ -119,7 +119,7 @@ export function resetMap(layerData: LayerData) {
   const up_left_y = Math.min(bounds[0].y, bounds[1].y);
 
   const zoomOffset = 0;
-  let tileSize = 256;
+  const tileSize = 256;
 
   const x_stretch = tileSize / width;
   const y_stretch = tileSize / height;
@@ -135,7 +135,7 @@ export function resetMap(layerData: LayerData) {
     ),
   });
 
-  map = leafletMap("map", {
+  map = leafletMap('map', {
     crs: crs,
     minZoom: 0,
     maxZoom: 6,
@@ -150,16 +150,15 @@ export function resetMap(layerData: LayerData) {
     attributionControl: false,
   });
 
-  // @ts-ignore
   map.fitBounds(baseBounds);
-  map.createPane("cp");
-  map.getPane("cp")!.style.zIndex = "20";
-  map.createPane("cpTooltip");
-  map.getPane("cpTooltip")!.style.zIndex = "30";
-  map.createPane("confirmationLines");
-  map.getPane("confirmationLines")!.style.zIndex = "10";
-  map.createPane("background");
-  map.getPane("background")!.style.zIndex = "0";
+  map.createPane('cp');
+  map.getPane('cp')!.style.zIndex = '20';
+  map.createPane('cpTooltip');
+  map.getPane('cpTooltip')!.style.zIndex = '30';
+  map.createPane('confirmationLines');
+  map.getPane('confirmationLines')!.style.zIndex = '10';
+  map.createPane('background');
+  map.getPane('background')!.style.zIndex = '0';
 
   new TileLayer(
     `map-tiles/${layerData.background.minimap_filename}/{z}/{x}/{y}.png`,
@@ -169,8 +168,7 @@ export function resetMap(layerData: LayerData) {
       zoomOffset: zoomOffset,
       // scale tiles to match minimap width and height
       tileSize: tileSize,
-      pane: "background",
-      // @ts-ignore
+      pane: 'background',
       bounds: baseBounds,
     }
   ).addTo(map);
@@ -179,7 +177,7 @@ export function resetMap(layerData: LayerData) {
   mapData.capturePoints.forEach((cp) => {
     const cm = circleMarker(cp.pos, {
       radius: 20,
-      pane: "cp",
+      pane: 'cp',
     });
 
     // remember mapping between CircleMarker and CapturePoint
@@ -188,22 +186,20 @@ export function resetMap(layerData: LayerData) {
 
     // during mouseover, the font color and size changes
     // (we add a CSS class and re-open the tooltip)
-    cm.on("mouseover", (ev) => {
+    cm.on('mouseover', (ev) => {
       const tt = cm.getTooltip();
       if (tt !== undefined) {
         // this will probably break at some point
-        // @ts-ignore
-        DomUtil.addClass(tt._container, "mouseover");
+        DomUtil.addClass(tt._container, 'mouseover');
       }
       // re-open tooltip to make sure text is still centered
       cm.closeTooltip();
       cm.openTooltip();
     });
-    cm.on("mouseout", (ev) => {
+    cm.on('mouseout', (ev) => {
       const tt = cm.getTooltip();
       if (tt !== undefined) {
-        // @ts-ignore
-        L.DomUtil.removeClass(tt._container, "mouseover");
+        L.DomUtil.removeClass(tt._container, 'mouseover');
       }
       cm.closeTooltip();
       cm.openTooltip();
@@ -211,21 +207,18 @@ export function resetMap(layerData: LayerData) {
   });
 
   // make sure the leaflet map rescales properly when the window is resized
-  const mapDiv = document.getElementById("map")!;
+  const mapDiv = document.getElementById('map')!;
   new ResizeObserver(() => {
     map!.invalidateSize();
-    // @ts-ignore
     map!.fitBounds(baseBounds, {
       animate: false,
     });
   }).observe(mapDiv);
 
   // Debug
-  if (window.location.hostname.startsWith("dev.")) {
-    map.addEventListener("mousedown", function (ev) {
-      // @ts-ignore
+  if (window.location.hostname.startsWith('dev.')) {
+    map.addEventListener('mousedown', function (ev) {
       const lat = ev.latlng.lat;
-      // @ts-ignore
       const lng = ev.latlng.lng;
     });
   }
@@ -256,12 +249,12 @@ export function redraw() {
     // remove hidden CPs and re-add previously hidden but not visible CPs
     if (!rI.visible) {
       // hide circlemarker
-      cm.off("click");
+      cm.off('click');
       cm.remove();
       return;
     } else if (!map!.hasLayer(cm)) {
       cm.addTo(map!);
-      cm.on("click", (ev) => {
+      cm.on('click', (ev) => {
         onClick(cm, cp);
       });
     }
@@ -277,7 +270,7 @@ export function redraw() {
     // concat lane labels
     let laneTooltip = Array.from(rI.laneLabels)
       .map(([lane, depth]) => `${depth}${lane.name[0]}`)
-      .join(",");
+      .join(',');
 
     // hide lane label for
     // - main bases
@@ -286,22 +279,22 @@ export function redraw() {
     if (
       mapData.lanes.size === 1 ||
       mapData.mains.has(cp) ||
-      laneTooltip === ""
+      laneTooltip === ''
     ) {
-      laneTooltip = "&nbsp";
+      laneTooltip = '&nbsp';
     }
 
     // create new tooltip
     cm.bindTooltip(
       `<div class="cpTooltipName">${cp.displayName}</div>` +
-        `<div class="cpTooltipDepth">${rI.centerNumber || "&nbsp"}</div>` +
+        `<div class="cpTooltipDepth">${rI.centerNumber || '&nbsp'}</div>` +
         `<div class="cpTooltipLanes">${laneTooltip}</div>`,
       {
         permanent: true,
-        direction: "top",
+        direction: 'top',
         opacity: 1.0,
-        className: "cpTooltip",
-        pane: "cpTooltip",
+        className: 'cpTooltip',
+        pane: 'cpTooltip',
         offset: [0, 50],
       }
     ).openTooltip();
@@ -330,8 +323,8 @@ export function redraw() {
     if (prev !== null) {
       // only connect neighbouring CPs when both are confirmed or mandatory
       const line = polyline([prev.pos, cp.pos], {
-        color: "rgb(102,202,193)",
-        pane: "confirmationLines",
+        color: 'rgb(102,202,193)',
+        pane: 'confirmationLines',
       }).addTo(map!);
       confirmationLines.add(line);
     }

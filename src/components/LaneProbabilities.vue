@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div class="card bg-dark">
     <div class="text-white text-center small m-1">
       <a
@@ -13,7 +13,7 @@ Please report any inconsistencies on our GitHub repository (link in the help sec
       >
     </div>
     <div class="lane-percentages">
-      <div class="lane" :style="laneColor(lane)" v-for="lane in lanes">
+      <div class="lane" :style="laneColor(lane)" v-for="lane in lanes" :key="lane.probability">
         <label>{{ lane.name }}</label>
         <span>{{ Math.floor(lane.probability * 100) }}%</span>
       </div>
@@ -21,16 +21,15 @@ Please report any inconsistencies on our GitHub repository (link in the help sec
   </div>
 </template>
 <script>
-import Vue from "vue";
 
-export default Vue.extend({
+export default ({
   props: {
     lanes: Set,
   },
   methods: {
     laneColor(lane) {
       if (lane.probability === 0) {
-        return "color: hsl(0, 0%, 50%);";
+        return 'color: hsl(0, 0%, 50%);';
       }
 
       // we map lanePercentage in [0, 1] to hue in [RED_HUE, GREEN_HUE]

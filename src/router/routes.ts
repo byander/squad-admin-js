@@ -11,6 +11,7 @@ const routes: RouteRecordRaw[] = [
       { path: 'layers', component: () => import('pages/Layers.vue') },
       { path: 'rcon', component: () => import('pages/Rcon.vue') },
       { path: 'lanes', component: () => import('pages/Lanes.vue') },
+      { path: 'messages', component: () => import('pages/Messages.vue') },
     ],
   },
 

@@ -1,5 +1,5 @@
-import { Cluster } from "./cluster";
-import { position } from "./position";
+import { Cluster } from './cluster';
+import { position } from './position';
 
 export class CapturePoint {
   public readonly name: string;
@@ -20,7 +20,7 @@ export class CapturePoint {
     // consider two points equal if they are
     // very close and have the same displayName
     // TODO: shouldn't sdkName be used here?
-    let distance = Math.sqrt(
+    const distance = Math.sqrt(
       Math.pow(this.pos[0] - cpOther.pos[0], 2) +
         Math.pow(this.pos[1] - cpOther.pos[1], 2)
     );

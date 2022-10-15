@@ -1,12 +1,12 @@
-import { Cluster } from "./cluster";
-import { CapturePoint } from "./capturePoint";
-import { mapData } from "./mapData";
-import { raasData } from "./raasData";
-import { redraw, resetMap } from "./rendering";
-import { Lane } from "./lane";
-import Vue from "vue";
+import { Cluster } from './cluster';
+import { CapturePoint } from './capturePoint';
+import { mapData } from './mapData';
+import { raasData } from './raasData';
+import { redraw, resetMap } from './rendering';
+import { Lane } from './lane';
+import Vue from 'vue';
 
-export function changeLayer(mapName: string, layerName: string) {
+export default function changeLayer(mapName: string, layerName: string) {
   // delete all existing map data
   mapData.capturePoints = new Set();
   mapData.clusters = new Set();
@@ -26,8 +26,8 @@ export function changeLayer(mapName: string, layerName: string) {
     const lane = new Lane(laneName);
     clusters_on_lane.set(lane, new Set());
     links.forEach((link) => {
-      clusters_on_lane.get(lane).add(link["a"]);
-      clusters_on_lane.get(lane).add(link["b"]);
+      clusters_on_lane.get(lane).add(link['a']);
+      clusters_on_lane.get(lane).add(link['b']);
     });
 
     // make Vue observable so that the percentages change

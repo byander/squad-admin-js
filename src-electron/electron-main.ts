@@ -76,10 +76,19 @@ app
     // Atalho
     globalShortcut.register('Alt+V', () => {
       if (onTop === false) {
+        if (!mainWindow.isFocused()) {
+          mainWindow.minimize();
+          mainWindow.restore();
+          mainWindow.focus();
+          mainWindow.show();
+        }
         mainWindow.setAlwaysOnTop(true);
         mainWindow.setOpacity(0.7);
         onTop = true;
       } else {
+        mainWindow.minimize();
+        mainWindow.restore();
+        mainWindow.blur();
         mainWindow.setAlwaysOnTop(false);
         mainWindow.setOpacity(1);
         onTop = false;

@@ -1,7 +1,7 @@
-import { Cluster } from "./cluster";
-import { mapData } from "./mapData";
-import { Lane } from "./lane";
-import { CapturePoint } from "./capturePoint";
+import { Cluster } from './cluster';
+import { mapData } from './mapData';
+import { Lane } from './lane';
+import { CapturePoint } from './capturePoint';
 
 export function getAllPossibleConfirmedPaths(lane: Lane): Cluster[][] {
   const startCp = mapData.ownMain!;

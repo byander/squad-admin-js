@@ -1,6 +1,6 @@
-<template lang="html">
+<template>
   <div class="layer-selection">
-    <b-dropdown
+    <!-- <b-dropdown
       id="map-dropdown"
       ref="mapDropdown"
       class="tweaked-dropdown"
@@ -34,27 +34,30 @@
       >
         {{ layer }}
       </b-dropdown-item>
-    </b-dropdown>
+    </b-dropdown> -->
   </div>
 </template>
 
-<script>
-import Vue from "vue";
-import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
-import "bootstrap/dist/css/bootstrap";
-import "bootstrap-vue/dist/bootstrap-vue";
-import { isSmallTouchDevice } from "./utils";
-import { changeLayer, raasData } from "./map";
+<script lang="ts">
+// import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+// import 'bootstrap/dist/css/bootstrap';
+// import 'bootstrap-vue/dist/bootstrap-vue';
+// import { isSmallTouchDevice } from './utils';
+// import { changeLayer, raasData } from '../map';
+import { raasData } from '../map/raasData';
 
-Vue.use(BootstrapVue);
-Vue.use(IconsPlugin);
+// Vue.use(BootstrapVue);
+// Vue.use(IconsPlugin);
 
-export default Vue.extend({
+export default {
+  name: 'LayerSelect',
+
   props: {
     mapData: Object,
     startingMapName: String,
     startingLayerName: String,
   },
+
   created() {
     this.mapNames = Object.keys(this.raasData);
 
@@ -62,13 +65,14 @@ export default Vue.extend({
     this.selectMapAndLayerFromUrl();
 
     // listen to back and forwards button
-    window.onpopstate = (event) => {
+    window.onpopstate = () => {
       this.selectMapAndLayerFromUrl();
     };
   },
+
   data() {
     return {
-      filterMapInputValue: "",
+      filterMapInputValue: '',
       currMapName: null,
       currLayerName: null,
       mapNames: null,
@@ -76,30 +80,30 @@ export default Vue.extend({
     };
   },
   mounted() {
-    this.$root.$on("bv::dropdown::shown", (bvEvent) => {
-      this.filterMapInputValue = "";
-      this.filterMap();
-      if (!isSmallTouchDevice()) {
-        var input = this.$refs.filterMapInputRef;
-        setTimeout(() => input.$el.focus(), 10);
-      }
-    });
+    // this.$root.$on('bv::dropdown::shown', () => {
+    //   this.filterMapInputValue = '';
+    //   this.filterMap();
+    //   if (!isSmallTouchDevice()) {
+    //     var input = this.$refs.filterMapInputRef;
+    //     setTimeout(() => input.$el.focus(), 10);
+    //   }
+    // });
 
     this.keyListener = (e) => {
       switch (e.key) {
-        case "m":
+        case 'm':
           this.$refs.mapDropdown.show();
           break;
-        case "l":
+        case 'l':
           this.$refs.layerDropdown.show();
           break;
       }
     };
-    document.addEventListener("keyup", this.keyListener);
+    document.addEventListener('keyup', this.keyListener);
     this.changeMapAndLayer(this.currMapName, this.currLayerName);
   },
-  beforeDestroy() {
-    document.removeEventListener("keyup", this.keylistener);
+  beforeUnmount() {
+    document.removeEventListener('keyup', this.keylistener);
   },
   methods: {
     selectMap(map) {
@@ -110,20 +114,20 @@ export default Vue.extend({
     },
     filterMap() {
       this.mapNames = Object.keys(this.raasData).filter((mapName) => {
-        const normalized = mapName.toLowerCase().replace(" ", "");
+        const normalized = mapName.toLowerCase().replace(' ', '');
         const normalizedFilter = this.filterMapInputValue
           .toLowerCase()
-          .replace(" ", "");
+          .replace(' ', '');
         return normalized.includes(normalizedFilter);
       });
     },
-    onInputFilterSubmit(e) {
+    onInputFilterSubmit() {
       if (this.mapNames.length > 0) {
         this.selectMap(this.mapNames[0]);
         this.$refs.mapDropdown.hide(true);
       }
     },
-    onKeyup(e) {},
+
     changeMapAndLayer(map, layer) {
       // check that map exists
       if (!(map in this.raasData)) {
@@ -152,20 +156,20 @@ export default Vue.extend({
       this.currLayerName = layer;
 
       let urlHashParams = new URLSearchParams(location.hash.substr(1));
-      urlHashParams.set("map", this.currMapName);
-      urlHashParams.set("layer", this.currLayerName);
+      urlHashParams.set('map', this.currMapName);
+      urlHashParams.set('layer', this.currLayerName);
       location.hash = urlHashParams.toString();
       changeLayer(this.currMapName, this.currLayerName);
     },
     selectMapAndLayerFromUrl() {
       let urlHashParams = new URLSearchParams(location.hash.substr(1));
       this.changeMapAndLayer(
-        urlHashParams.get("map") || this.startingMapName,
-        urlHashParams.get("layer") || this.startingLayerName
+        urlHashParams.get('map') || this.startingMapName,
+        urlHashParams.get('layer') || this.startingLayerName
       );
     },
   },
-});
+};
 </script>
 
 <style lang="scss">
