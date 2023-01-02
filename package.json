@@ -1,10 +1,11 @@
 {
   "name": "squad-admin",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A Quasar Project",
   "productName": "Squad Admin",
   "author": "",
   "private": true,
+  "asar": false,
   "scripts": {
     "electron-dev": "quasar dev -m electron",
     "electron-build": "quasar build -m electron",
@@ -19,9 +20,9 @@
     "@electron/remote": "^2.0.8",
     "@quasar/extras": "^1.0.0",
     "exceljs": "^4.3.0",
+    "pinia": "^2.0.23",
     "quasar": "^2.6.0",
     "read-excel-file": "^5.4.6",
-    "sqlite3": "^5.0.11",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0"
   },
@@ -39,6 +40,7 @@
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^8.5.0",
     "prettier": "^2.5.1",
+    "sqlite3": "^5.0.11",
     "typescript": "^4.5.4"
   },
   "engines": {

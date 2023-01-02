@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <h6 class="doc-heading doc-h2 text-grey-3">Regras do servidor</h6>
+    <h6 class="doc-heading doc-h2 text-grey-3">Avisos gerais no BroadCast</h6>
     <div class="col-12">
       <q-input
         outlined
@@ -62,7 +62,7 @@
 import { copyToClipboard, Notify } from 'quasar';
 
 export default {
-  name: 'RulesPage',
+  name: 'MessagesPage',
 
   data() {
     return {
@@ -74,11 +74,11 @@ export default {
       editedItem: null,
       columns: [
         {
-          name: 'rules',
+          name: 'message',
           required: true,
-          label: 'Regras',
+          label: 'Mensagem',
           align: 'left',
-          field: (row) => row.regras,
+          field: (row) => row.mensagem,
           format: (val) => `${val}`,
           sortable: false,
           style: 'max-width: 600px',
@@ -96,12 +96,12 @@ export default {
   },
 
   mounted() {
-    this.readRules();
+    this.readData();
   },
 
   methods: {
-    readRules() {
-      return window.api.getRules().then((response) => {
+    readData() {
+      return window.api.getMessages().then((response) => {
         this.rules = response;
       });
     },
@@ -114,7 +114,7 @@ export default {
       if (this.show_dialog === true) {
         return;
       }
-      this.command = `adminbroadcast ${row.regras}`;
+      this.command = `adminbroadcast ${row.mensagem}`;
       copyToClipboard(this.command);
       Notify.create({
         type: 'positive',

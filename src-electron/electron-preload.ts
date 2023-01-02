@@ -17,8 +17,9 @@
  */
 
 const { contextBridge } = require('electron');
+import { BrowserWindow } from '@electron/remote';
 
-import sqlite3 from 'sqlite3';
+// import sqlite3 from 'sqlite3';
 import path from 'path';
 const ExcelJS = require('exceljs');
 
@@ -109,6 +110,32 @@ const getReasonsKickBan = () => {
 };
 
 contextBridge.exposeInMainWorld('api', {
+  minimize() {
+    BrowserWindow.getFocusedWindow().minimize();
+  },
+
+  toggleMaximize() {
+    const win = BrowserWindow.getFocusedWindow();
+
+    if (win.isMaximized()) {
+      win.unmaximize();
+    } else {
+      win.maximize();
+    }
+  },
+
+  close() {
+    BrowserWindow.getFocusedWindow().close();
+  },
+
+  opacity(value: number) {
+    const win = BrowserWindow.getFocusedWindow();
+    if (win.isAlwaysOnTop() === false) {
+      return;
+    }
+    win.setOpacity(value);
+  },
+
   setTitle: () => {
     console.log('doAthig');
   },
