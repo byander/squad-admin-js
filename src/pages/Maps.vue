@@ -15,6 +15,11 @@
       </q-input>
       <q-btn
         color="blue"
+        label="Sugerir votação"
+        v-on:click="suggestion"
+      ></q-btn>
+      <q-btn
+        color="blue"
         label="Vencedor de mapa e modo"
         v-on:click="winnerMapMode"
       ></q-btn>
@@ -99,33 +104,42 @@
 </template>
 
 <script lang="ts">
+import { computed, ref } from 'vue';
 import { copyToClipboard, Notify } from 'quasar';
-import { ref } from 'vue';
+import { userVote } from 'stores/history';
+
 
 export default {
   name: 'MapsPage',
 
   setup() {
+    const store = userVote();
+
     const selected = ref([]);
     const selectedMode = ref([]);
-    let maps = ref([]);
-    let modes = ref([]);
-    let command = ref('');
+    const maps = ref([]);
+    const modes = ref([]);
+    const command = computed(() => store.command);
+    const selectedMaps = computed(() => store.selectedMaps);
+    const selectedModes = computed(() => store.selectedModes);
 
     return {
+      store,
       selected,
       selectedMode,
       maps,
       modes,
       command,
+      selectedMaps,
+      selectedModes,
       columnsMaps: [
         {
           name: 'maps',
           required: true,
           label: 'Mapa',
           align: 'left',
-          field: (row) => row.map,
-          format: (val) => `${val}`,
+          field: (row: any[]) => row.map,
+          format: (val: any) => `${val}`,
           sortable: false,
         },
       ],
@@ -135,8 +149,8 @@ export default {
           required: true,
           label: 'Modo de jogo',
           align: 'left',
-          field: (row) => row.modo,
-          format: (val) => `${val}`,
+          field: (row: { modo: any }) => row.modo,
+          format: (val: any) => `${val}`,
           sortable: false,
         },
       ],
@@ -146,25 +160,41 @@ export default {
   mounted() {
     this.readMaps();
     this.readModes();
+    this.setSelectedMapsModes();
   },
   methods: {
     readMaps() {
-      return window.api.getMaps().then((response) => {
+      return window.api.getMaps().then((response: never[]) => {
         this.maps = response;
       });
     },
+
+    suggestion() {
+      this.store.saveLastCommand(
+          'adminbroadcast Sugestões para o próximo mapa?'
+        );
+        this.setNotify('positive', 'Copiado para a área de transferência');
+        copyToClipboard(this.command);
+        return;
+    },
+
+    setSelectedMapsModes() {
+      this.selected = this.selectedMaps;
+      this.selectedMode = this.selectedModes;
+    },
+
     readModes() {
-      return window.api.getGameMode().then((response) => {
+      return window.api.getGameMode().then((response: never[]) => {
         this.modes = response;
       });
     },
 
     createVoteMap() {
       let sel = JSON.parse(JSON.stringify(this.selected));
-      let mapSel = [];
+      let mapSel: string[] = [];
       let maps = '';
       let count = 0;
-      sel.forEach((el) => {
+      sel.forEach((el: { map: string }) => {
         count++;
         mapSel.push(count + ') ' + el.map);
       });
@@ -173,7 +203,11 @@ export default {
         return;
       }
       if (count === 1) {
-        this.command = `adminbroadcast mapa ${sel[0].map} venceu! Obrigado a todos pelo voto e bom jogo!`;
+        // this.command = `adminbroadcast mapa ${sel[0].map} venceu! Obrigado a todos pelo voto e bom jogo!`;
+        this.store.saveLastCommand(
+          `adminbroadcast mapa ${sel[0].map} venceu! Obrigado a todos pelo voto e bom jogo!`
+        );
+        this.store.saveSelectedMaps(sel);
         this.setNotify('positive', 'Copiado para a área de transferência');
         copyToClipboard(this.command);
         return;
@@ -181,17 +215,20 @@ export default {
       mapSel.forEach((el) => {
         maps = maps + ' ' + el;
       });
-      this.command = `adminbroadcast Vote apenas uma vez: ${maps}`;
+      // this.command = `adminbroadcast Vote apenas uma vez: ${maps}`;
+      this.store.saveLastCommand(`adminbroadcast Vote apenas uma vez: ${maps}`);
+      this.store.saveSelectedMaps(sel);
+
       this.setNotify('positive', 'Copiado para a área de transferência');
       copyToClipboard(this.command);
     },
 
     createVoteMode() {
       let selMode = JSON.parse(JSON.stringify(this.selectedMode));
-      let modeSel = [];
+      let modeSel: string[] = [];
       let modes = '';
       let count = 0;
-      selMode.forEach((el) => {
+      selMode.forEach((el: { modo: string }) => {
         count++;
         modeSel.push(count + ') ' + el.modo);
       });
@@ -200,7 +237,12 @@ export default {
         return;
       }
       if (count === 1) {
-        this.command = `adminbroadcast Modo ${selMode[0].modo} venceu! Obrigado a todos pelo voto e bom jogo!`;
+        // this.command = `adminbroadcast Modo ${selMode[0].modo} venceu! Obrigado a todos pelo voto e bom jogo!`;
+        this.store.saveLastCommand(
+          `adminbroadcast Modo ${selMode[0].modo} venceu! Obrigado a todos pelo voto e bom jogo!`
+        );
+        this.store.saveSelectedModes(selMode);
+
         this.setNotify('positive', 'Copiado para a área de transferência');
         copyToClipboard(this.command);
         return;
@@ -208,7 +250,12 @@ export default {
       modeSel.forEach((el) => {
         modes = modes + ' ' + el;
       });
-      this.command = `adminbroadcast Vote apenas uma vez: ${modes}`;
+      // this.command = `adminbroadcast Vote apenas uma vez: ${modes}`;
+      this.store.saveLastCommand(
+        `adminbroadcast Vote apenas uma vez: ${modes}`
+      );
+      this.store.saveSelectedModes(selMode);
+
       this.setNotify('positive', 'Copiado para a área de transferência');
       copyToClipboard(this.command);
     },
@@ -217,14 +264,20 @@ export default {
       let sel = JSON.parse(JSON.stringify(this.selected));
       let selMode = JSON.parse(JSON.stringify(this.selectedMode));
 
-      if ((sel.length === 1) & (selMode.length === 1)) {
-        this.command = `adminbroadcast Mapa ${sel[0].map} modo ${selMode[0].modo} venceu! Obrigado a todos pelo voto e bom jogo!`;
+      if (sel.length === 1 && selMode.length === 1) {
+        // this.command = `adminbroadcast Mapa ${sel[0].map} modo ${selMode[0].modo} venceu! Obrigado a todos pelo voto e bom jogo!`;
+        this.store.saveLastCommand(
+          `adminbroadcast Mapa ${sel[0].map} modo ${selMode[0].modo} venceu! Obrigado a todos pelo voto e bom jogo!`
+        );
+        this.store.saveSelectedMaps(sel);
+        this.store.saveSelectedModes(selMode);
+
         this.setNotify('positive', 'Copiado para a área de transferência');
         copyToClipboard(this.command);
       }
     },
 
-    setNotify(type, message) {
+    setNotify(type: string, message: string) {
       Notify.create({
         type: type,
         timeout: 1000,

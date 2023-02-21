@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <h6 class="doc-heading doc-h2 text-grey-3">Rcon</h6>
+    <h6 class="doc-heading doc-h2 text-grey-3">Rcon - Aplicar punições</h6>
     <div class="q-gutter-sm col-12">
       <q-input
         outlined
@@ -8,72 +8,206 @@
         dark
         color="grey-3"
         label="Comando"
-        v-model="command"
+        v-model="store.command"
         type="textarea"
-        rows="1"
+        rows="3"
       >
-      </q-input>
-      <q-btn
-        color="blue"
-        label="Colar dados do Rcon"
-        v-on:click="getData"
-      ></q-btn>
-      <q-btn
-        color="blue"
-        label="Aplicar punição"
-        v-on:click="createCommand"
-      ></q-btn>
-      <div class="row">
-        <div class="text-white col-4">
-          <q-option-group
-            dark
+        <template v-slot:prepend>
+          <q-icon
+            name="content_copy"
             color="blue"
-            v-model="group"
-            :options="options"
-            inline
-            @update:model-value="checkBan"
-          ></q-option-group>
+            @click="copyCommand"
+            class="cursor-pointer"
+          />
+        </template>
+      </q-input>
+
+      <div class="row">
+        <div class="col-3">
+          <q-btn
+            color="blue"
+            label="Colar do Rcon"
+            v-on:click="getData"
+          ></q-btn>
         </div>
-        <div class="col-8">
+      </div>
+    </div>
+
+    <!-- Dialogs -->
+
+    <!-- Dialog Kick -->
+    <q-dialog v-model="kickDialog">
+      <q-card dark style="max-width: 600px; width: 600px; height: 260px">
+        <q-card-section>
+          <div class="text-h6">Kick</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
           <q-select
             v-model="reason"
             outlined
-            use-input
+            bottom-slots
             dense
             dark
             :options="reasons"
             :options-dense="true"
-            label="Motivo"
+            label="Selecione um motivo"
+          >
+            <template v-slot:append>
+              <q-icon
+                name="close"
+                @click.stop.prevent="reason = ''"
+                class="cursor-pointer"
+              ></q-icon> </template
           ></q-select>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <q-item>
-            <q-item-section>
-              <q-slider
-                :disable="valueEnable"
-                v-model="value"
-                color="blue"
-                :min="0"
-                :max="30"
-                label-always
-              ></q-slider>
-            </q-item-section>
-          </q-item>
-        </div>
-        <div class="text-white col-8">
-          <q-option-group
-            :disable="valueEnable"
+          ou
+          <q-input
+            v-model="reason"
+            outlined
+            dense
             dark
+            color="grey-3"
+            label="Digite o motivo"
+          >
+          </q-input>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="Cancelar" color="blue" v-close-popup></q-btn>
+          <q-btn
+            flat
+            label="OK"
             color="blue"
-            v-model="groupTime"
-            :options="optionsTime"
-            inline
-          ></q-option-group>
-        </div>
-      </div>
-    </div>
+            @click="kickPlayer"
+            v-close-popup
+          ></q-btn>
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+
+    <!-- Dialog Warning -->
+    <q-dialog v-model="warnDialog">
+      <q-card dark style="max-width: 600px; width: 600px; height: 260px">
+        <q-card-section>
+          <div class="text-h6">Warning</div>
+        </q-card-section>
+        <q-card-section class="q-pt-none">
+          <q-select
+            v-model="reason"
+            outlined
+            bottom-slots
+            dense
+            dark
+            :options="reasons"
+            :options-dense="true"
+            label="Selecione um motivo"
+          >
+            <template v-slot:append>
+              <q-icon
+                name="close"
+                @click.stop.prevent="reason = ''"
+                class="cursor-pointer"
+              ></q-icon> </template
+          ></q-select>
+          ou
+          <q-input
+            v-model="reason"
+            outlined
+            dense
+            dark
+            color="grey-3"
+            label="Digite o motivo"
+          >
+          </q-input>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="Cancelar" color="blue" v-close-popup></q-btn>
+          <q-btn
+            flat
+            label="OK"
+            color="blue"
+            @click="warnPlayer"
+            v-close-popup
+          ></q-btn>
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+
+    <!-- Dialog Ban -->
+    <q-dialog v-model="banDialog">
+      <q-card dark style="max-width: 600px; width: 600px; height: 310px">
+        <q-card-section>
+          <div class="text-h6">Ban</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          <div class="row">
+            <div class="col-4">
+              <q-item>
+                <q-item-section>
+                  <q-slider
+                    v-model="value"
+                    color="blue"
+                    :min="0"
+                    :max="30"
+                    label-always
+                  ></q-slider>
+                </q-item-section>
+              </q-item>
+            </div>
+            <div class="col-8">
+              <q-option-group
+                dark
+                color="blue"
+                v-model="groupTime"
+                :options="optionsTime"
+                inline
+              ></q-option-group>
+            </div>
+          </div>
+
+          <q-select
+            v-model="reason"
+            outlined
+            bottom-slots
+            dense
+            dark
+            :options="reasons"
+            :options-dense="true"
+            label="Selecione um motivo"
+          >
+            <template v-slot:append>
+              <q-icon
+                name="close"
+                @click.stop.prevent="reason = ''"
+                class="cursor-pointer"
+              ></q-icon> </template
+          ></q-select>
+          ou
+          <q-input
+            v-model="reason"
+            outlined
+            dense
+            dark
+            color="grey-3"
+            label="Digite o motivo"
+          >
+          </q-input>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="Cancelar" color="blue" v-close-popup></q-btn>
+          <q-btn
+            flat
+            label="OK"
+            color="blue"
+            @click="banPlayer"
+            v-close-popup
+          ></q-btn>
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
 
     <div class="q-pt-md">
       <q-table
@@ -81,14 +215,13 @@
         dense
         color="text-grey-3"
         card-class="bg-drawer text-grey-4"
-        :rows="rcon"
+        :rows="store.data"
         :columns="columns"
         row-key="steamId"
         :rows-per-page-options="[0]"
         :filter="filter"
         :filter-method="customFilter"
         wrap-cells
-        selection="single"
         v-model:selected="selected"
       >
         <template v-slot:top>
@@ -115,6 +248,56 @@
             </div>
           </div>
         </template>
+        <!-- <template v-slot:body-cell-steamId="props">
+          <q-td :props="props">
+            <q-btn
+              color="orange"
+              raised
+              small
+              tile
+            ></q-btn>
+              <div>
+                {{props.value}}
+              <q-badge :label="props.value" href="https://quasar.dev/vue-components/table#QTable-API"></q-badge>
+              <a href="https://quasar.dev/vue-components/table#QTable-API" />
+            </div>
+          </q-td>
+        </template> -->
+        <template v-slot:body-cell-actions="props">
+          <q-td :props="props">
+            <q-btn
+              color="orange"
+              icon="exit_to_app"
+              @click="kickPlayerDialog(props)"
+            >
+              <q-tooltip>Kick</q-tooltip>
+            </q-btn>
+            <q-btn color="red" icon="cancel" @click="banPlayerDialog(props)">
+              <q-tooltip>Ban</q-tooltip>
+            </q-btn>
+            <q-btn
+              icon="warning"
+              style="background: goldenrod"
+              @click="warnPlayerDialog(props)"
+            >
+              <q-tooltip>Enviar um aviso</q-tooltip>
+            </q-btn>
+            <q-btn
+              color="blue"
+              icon="published_with_changes"
+              @click="movePlayer(props)"
+            >
+              <q-tooltip>Trocar de time</q-tooltip>
+            </q-btn>
+            <q-btn
+              color="green"
+              icon="logout"
+              @click="quitFromSquad(props)"
+            >
+              <q-tooltip>Retirar do esquadrão</q-tooltip>
+            </q-btn>
+          </q-td>
+        </template>
       </q-table>
     </div>
   </q-page>
@@ -123,35 +306,45 @@
 <script lang="ts">
 import { copyToClipboard, Notify } from 'quasar';
 import { ref } from 'vue';
+import { storeRcon } from 'stores/history';
 
 export default {
   name: 'RconPage',
 
   setup() {
+    const store = storeRcon();
+
+    const command = ref('');
     const selected = ref([]);
-    const rcon = ref([]);
+    const data = ref([]);
     const reasons = ref([]);
     const reason = ref('');
-    const command = ref('');
     const lowerSearch = ref('');
     const search = ref('');
     const group = ref('opt1');
     const groupTime = ref('d');
     const value = ref(1);
-    const valueEnable = ref(true);
+    const kickDialog = ref(false);
+    const warnDialog = ref(false);
+    const banDialog = ref(false);
+    const steamID = ref('');
 
     return {
+      store,
       selected,
-      rcon,
       reasons,
       reason,
       command,
+      data,
       search,
       group,
       groupTime,
       lowerSearch,
       value,
-      valueEnable,
+      kickDialog,
+      warnDialog,
+      banDialog,
+      steamID,
       options: [
         {
           label: 'Kick',
@@ -195,8 +388,8 @@ export default {
           align: 'left',
           field: (row) => row.steamId,
           format: (val) => `${val}`,
+          // format: (val) => `<a :href="/account/offers/edit/">${val}</a>`,
           sortable: true,
-          // style: 'max-width: 600px',
         },
         {
           name: 'name',
@@ -216,27 +409,24 @@ export default {
           field: (row) => row.teamId,
           format: (val) => `${val}`,
           sortable: true,
-          // style: 'max-width: 600px',
         },
         {
           name: 'squadId',
           required: true,
-          label: 'Esquadrão ID',
+          label: 'Esquadrão',
           align: 'left',
           field: (row) => row.squadId,
           format: (val) => `${val}`,
           sortable: true,
-          // style: 'max-width: 600px',
         },
         {
           name: 'isLeader',
           required: true,
-          label: 'É líder',
+          label: 'É líder?',
           align: 'left',
-          field: (row) => row.isLeader,
+          field: (row) => (row.isLeader === 'True' ? 'Sim' : ''),
           format: (val) => `${val}`,
           sortable: true,
-          // style: 'max-width: 600px',
         },
         {
           name: 'role',
@@ -246,18 +436,21 @@ export default {
           field: (row) => row.role,
           format: (val) => `${val}`,
           sortable: true,
-          // style: 'max-width: 600px',
         },
         ,
         {
           name: 'connected',
           required: true,
-          label: 'Conectado',
+          label: 'Conectado?',
           align: 'left',
           field: (row) => row.connected,
           format: (val) => `${val}`,
-          sortable: true,
-          // style: 'max-width: 600px',
+          sortable: false,
+        },
+        {
+          align: 'left',
+          name: 'actions',
+          label: 'Ações',
         },
       ],
     };
@@ -278,12 +471,21 @@ export default {
   methods: {
     getData() {
       return navigator.clipboard.readText().then((clipText) => {
-        // let test = JSON.stringify(clipText);
         let test = clipText.split('\n');
-        // console.log(test);
-        let data = [];
+        let data: {
+          id: string;
+          steamId: string;
+          name: string;
+          teamId: string;
+          squadId: string;
+          isLeader: string;
+          role: string;
+          connected: string;
+        }[] = [];
+
         test.forEach((el) => {
           let row = el.split('|');
+
           if (row.length === 7) {
             let id = row[0].split(':');
             let steamId = row[1].split(':');
@@ -320,7 +522,89 @@ export default {
             });
           }
         });
-        this.rcon = data;
+        this.data = data;
+        this.store.saveData(data);
+      });
+    },
+
+    movePlayer(player) {
+      this.command = `AdminForceTeamChange ${player.key} `;
+
+      this.store.saveLastCommand(this.command);
+      copyToClipboard(this.command);
+      Notify.create({
+        type: 'positive',
+        timeout: 1000,
+        progress: true,
+        message: 'Copiado para a área de transferência',
+        actions: [{ icon: 'close', color: 'white' }],
+      });
+    },
+
+    quitFromSquad(player) {
+      this.command = `AdminRemovePlayerFromSquad ${player.key} `;
+
+      this.store.saveLastCommand(this.command);
+      copyToClipboard(this.command);
+      Notify.create({
+        type: 'positive',
+        timeout: 1000,
+        progress: true,
+        message: 'Copiado para a área de transferência',
+        actions: [{ icon: 'close', color: 'white' }],
+      });
+    },
+
+    kickPlayerDialog(player) {
+      this.kickDialog = true;
+      this.steamID = player.key;
+    },
+
+    kickPlayer() {
+      this.command = `AdminKick ${this.steamID} ${this.reason}`;
+      this.store.saveLastCommand(this.command);
+      this.copyCommand();
+    },
+
+    banPlayerDialog(player) {
+      this.banDialog = true;
+      this.steamID = player.key;
+    },
+
+    banPlayer() {
+      if (this.value === 0) {
+        this.command = `AdminBan ${this.steamID} 0 Banido permanentemente por: ${this.reason}`;
+      } else {
+        let banLength = `${this.value}${this.groupTime}`;
+        this.command = `AdminBan ${this.steamID} ${banLength} Banido temporariamente por: ${this.reason} (${banLength})`;
+      }
+      // this.command = `AdminBan ${this.steamID} ${this.reason}`;
+      this.store.saveLastCommand(this.command);
+      this.copyCommand();
+    },
+
+    warnPlayerDialog(player) {
+      this.warnDialog = true;
+      this.steamID = player.key;
+    },
+
+    warnPlayer() {
+      this.command = `AdminWarn ${this.steamID} ${this.reason}`;
+      this.store.saveLastCommand(this.command);
+      this.copyCommand();
+    },
+
+    copyCommand() {
+      if (this.command === '' || this.command === undefined) {
+        return;
+      }
+      copyToClipboard(this.store.command);
+      Notify.create({
+        type: 'positive',
+        timeout: 1000,
+        progress: true,
+        message: 'Copiado para a área de transferência',
+        actions: [{ icon: 'close', color: 'white' }],
       });
     },
 
@@ -334,31 +618,6 @@ export default {
 
     clearField() {
       this.search = '';
-    },
-
-    checkBan() {
-      if (this.valueEnable === true) {
-        this.valueEnable = false;
-      } else {
-        this.valueEnable = true;
-      }
-    },
-
-    createCommand() {
-      let sel = JSON.parse(JSON.stringify(this.selected));
-      if (sel.length === 0) {
-        return;
-      }
-      if (this.group === 'opt1') {
-        this.command = `AdminKick ${sel[0].steamId} ${this.reason}`;
-      } else {
-        if (this.value === 0) {
-          this.command = `AdminBan ${sel[0].steamId} Banido permanentemente por: ${this.reason}`;
-        } else {
-          let banLength = `${this.value}${this.groupTime}`;
-          this.command = `AdminBan ${sel[0].steamId} ${banLength} Banido temporariamente por: ${this.reason} (${banLength})`;
-        }
-      }
     },
 
     customFilter(rows, terms) {
@@ -403,6 +662,6 @@ textarea {
 }
 
 .table-height {
-  height: calc(100vh - 320px) !important;
+  height: calc(100vh - 300px) !important;
 }
 </style>
