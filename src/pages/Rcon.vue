@@ -147,7 +147,7 @@
               <q-item>
                 <q-item-section>
                   <q-slider
-                     v-model="value"
+                    v-model="value"
                     color="blue"
                     :min="0"
                     :max="30"
@@ -209,7 +209,7 @@
       </q-card>
     </q-dialog>
 
-    <div class="">
+    <div class="q-pt-md">
       <q-table
         class="my-sticky-header-column-table table-height"
         dense
@@ -248,31 +248,53 @@
             </div>
           </div>
         </template>
-        <template v-slot:body-cell-actions="props">
+        <!-- <template v-slot:body-cell-steamId="props">
           <q-td :props="props">
             <q-btn
               color="orange"
               raised
               small
               tile
+            ></q-btn>
+              <div>
+                {{props.value}}
+              <q-badge :label="props.value" href="https://quasar.dev/vue-components/table#QTable-API"></q-badge>
+              <a href="https://quasar.dev/vue-components/table#QTable-API" />
+            </div>
+          </q-td>
+        </template> -->
+        <template v-slot:body-cell-actions="props">
+          <q-td :props="props">
+            <q-btn
+              color="orange"
+              icon="exit_to_app"
               @click="kickPlayerDialog(props)"
             >
-              <v-icon left></v-icon>Kick
+              <q-tooltip>Kick</q-tooltip>
+            </q-btn>
+            <q-btn color="red" icon="cancel" @click="banPlayerDialog(props)">
+              <q-tooltip>Ban</q-tooltip>
             </q-btn>
             <q-btn
-              color="red"
-              raised
-              small
-              tile
-              @click="banPlayerDialog(props)"
+              icon="warning"
+              style="background: goldenrod"
+              @click="warnPlayerDialog(props)"
             >
-              <v-icon left></v-icon>Ban
+              <q-tooltip>Enviar um aviso</q-tooltip>
             </q-btn>
-            <q-btn color="purple" raised small tile @click="warnPlayerDialog(props)">
-              <v-icon left></v-icon>Warn
+            <q-btn
+              color="blue"
+              icon="published_with_changes"
+              @click="movePlayer(props)"
+            >
+              <q-tooltip>Trocar de time</q-tooltip>
             </q-btn>
-            <q-btn color="blue" raised small tile @click="movePlayer(props)">
-              <v-icon left></v-icon>Move
+            <q-btn
+              color="green"
+              icon="logout"
+              @click="quitFromSquad(props)"
+            >
+              <q-tooltip>Retirar do esquadrão</q-tooltip>
             </q-btn>
           </q-td>
         </template>
@@ -365,7 +387,7 @@ export default {
           label: 'SteamID',
           align: 'left',
           field: (row) => row.steamId,
-          // format: (val) => `${val}`,
+          format: (val) => `${val}`,
           // format: (val) => `<a :href="/account/offers/edit/">${val}</a>`,
           sortable: true,
         },
@@ -387,7 +409,6 @@ export default {
           field: (row) => row.teamId,
           format: (val) => `${val}`,
           sortable: true,
-          // style: 'max-width: 600px',
         },
         {
           name: 'squadId',
@@ -397,7 +418,6 @@ export default {
           field: (row) => row.squadId,
           format: (val) => `${val}`,
           sortable: true,
-          // style: 'max-width: 600px',
         },
         {
           name: 'isLeader',
@@ -407,7 +427,6 @@ export default {
           field: (row) => (row.isLeader === 'True' ? 'Sim' : ''),
           format: (val) => `${val}`,
           sortable: true,
-          // style: 'max-width: 600px',
         },
         {
           name: 'role',
@@ -417,7 +436,6 @@ export default {
           field: (row) => row.role,
           format: (val) => `${val}`,
           sortable: true,
-          // style: 'max-width: 600px',
         },
         ,
         {
@@ -427,10 +445,10 @@ export default {
           align: 'left',
           field: (row) => row.connected,
           format: (val) => `${val}`,
-          sortable: true,
-          // style: 'max-width: 600px',
+          sortable: false,
         },
         {
+          align: 'left',
           name: 'actions',
           label: 'Ações',
         },
@@ -467,6 +485,7 @@ export default {
 
         test.forEach((el) => {
           let row = el.split('|');
+
           if (row.length === 7) {
             let id = row[0].split(':');
             let steamId = row[1].split(':');
@@ -522,6 +541,20 @@ export default {
       });
     },
 
+    quitFromSquad(player) {
+      this.command = `AdminRemovePlayerFromSquad ${player.key} `;
+
+      this.store.saveLastCommand(this.command);
+      copyToClipboard(this.command);
+      Notify.create({
+        type: 'positive',
+        timeout: 1000,
+        progress: true,
+        message: 'Copiado para a área de transferência',
+        actions: [{ icon: 'close', color: 'white' }],
+      });
+    },
+
     kickPlayerDialog(player) {
       this.kickDialog = true;
       this.steamID = player.key;
@@ -540,11 +573,11 @@ export default {
 
     banPlayer() {
       if (this.value === 0) {
-          this.command = `AdminBan ${this.steamID} 0 Banido permanentemente por: ${this.reason}`;
-        } else {
-          let banLength = `${this.value}${this.groupTime}`;
-          this.command = `AdminBan ${this.steamID} ${banLength} Banido temporariamente por: ${this.reason} (${banLength})`;
-        }
+        this.command = `AdminBan ${this.steamID} 0 Banido permanentemente por: ${this.reason}`;
+      } else {
+        let banLength = `${this.value}${this.groupTime}`;
+        this.command = `AdminBan ${this.steamID} ${banLength} Banido temporariamente por: ${this.reason} (${banLength})`;
+      }
       // this.command = `AdminBan ${this.steamID} ${this.reason}`;
       this.store.saveLastCommand(this.command);
       this.copyCommand();
@@ -586,7 +619,6 @@ export default {
     clearField() {
       this.search = '';
     },
-
 
     customFilter(rows, terms) {
       this.lowerSearch = terms.search ? terms.search.toLowerCase() : '';
@@ -630,6 +662,6 @@ textarea {
 }
 
 .table-height {
-  height: calc(100vh - 360px) !important;
+  height: calc(100vh - 300px) !important;
 }
 </style>

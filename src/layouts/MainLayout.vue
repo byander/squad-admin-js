@@ -75,14 +75,14 @@
             <q-item-label>Avisos</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item to="/lanes" active-class="q-item-no-link-highlighting">
+        <!-- <q-item to="/lanes" active-class="q-item-no-link-highlighting">
           <q-item-section avatar>
             <q-icon name="map" />
           </q-item-section>
           <q-item-section>
             <q-item-label>SquadLanes</q-item-label>
           </q-item-section>
-        </q-item>
+        </q-item> -->
         <q-item
           active-class="q-item-no-link-highlighting"
           class="absolute-bottom"

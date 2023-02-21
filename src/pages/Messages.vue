@@ -1,7 +1,7 @@
 <template>
   <q-page padding>
     <h6 class="doc-heading doc-h2 text-grey-3">Avisos gerais no BroadCast</h6>
-    <div class="col-12">
+    <div class="q-gutter-sm col-12">
       <q-input
         outlined
         dense
@@ -13,21 +13,65 @@
         rows="3"
       >
       </q-input>
+
+      <!-- <div class="row">
+        <div class="col-3">
+          <q-btn
+            color="blue"
+            label="Nova mensagem"
+            v-on:click="newItem"
+          ></q-btn>
+        </div>
+      </div> -->
     </div>
+
+    <q-dialog v-model="messageDialog">
+      <q-card dark style="max-width: 600px; width: 600px; height: 300px">
+        <q-card-section>
+          <div class="text-h6">{{ messageType }}</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          <q-input
+            v-model="message"
+            outlined
+            dense
+            dark
+            type="textarea"
+            color="grey-3"
+            label="Mensagem"
+          >
+          </q-input>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="Cancelar" color="blue" v-close-popup></q-btn>
+          <q-btn
+            flat
+            label="OK"
+            color="blue"
+            @click="saveMessage"
+            v-close-popup
+          ></q-btn>
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+
     <div class="q-pt-md">
       <q-table
-        class="my-sticky-header-column-table"
+        class="my-sticky-header-column-table table-height"
         dense
         color="text-grey-3"
         card-class="bg-drawer text-grey-4"
-        :rows="rules"
+        :rows="data"
         :columns="columns"
-        row-key="name"
+        row-key="message"
         :rows-per-page-options="[0]"
         :filter="filter"
         :filter-method="customFilter"
         @row-click="onRowClick"
         wrap-cells
+        v-model:selected="selected"
       >
         <template v-slot:top>
           <div style="width: 100%" class="row">
@@ -53,6 +97,16 @@
             </div>
           </div>
         </template>
+        <!-- <template v-slot:body-cell-actions="props">
+          <q-td :props="props">
+            <q-btn color="blue" icon="edit" @click="editItem(props)">
+              <q-tooltip>Editar</q-tooltip>
+            </q-btn>
+            <q-btn color="red" icon="delete" @click="deleteItem(props)">
+              <q-tooltip>Deletar</q-tooltip>
+            </q-btn>
+          </q-td>
+        </template> -->
       </q-table>
     </div>
   </q-page>
@@ -60,18 +114,28 @@
 
 <script lang="ts">
 import { copyToClipboard, Notify } from 'quasar';
+import { ref } from 'vue';
 
 export default {
   name: 'MessagesPage',
 
-  data() {
+  setup() {
+    const command = ref('');
+    const message = ref('');
+    const selected = ref([]);
+    const search = ref('');
+    const data = ref([]);
+    const messageDialog = ref(false);
+    const messageType = ref('');
+
     return {
-      command: '',
-      search: '',
-      lowerSearch: '',
-      rules: [],
-      editedIndex: -1,
-      editedItem: null,
+      command,
+      message,
+      selected,
+      search,
+      data,
+      messageDialog,
+      messageType: 'Nova mensagem',
       columns: [
         {
           name: 'message',
@@ -82,6 +146,11 @@ export default {
           format: (val) => `${val}`,
           sortable: false,
           style: 'max-width: 600px',
+        },
+        {
+          align: 'left',
+          name: 'actions',
+          label: 'Ações',
         },
       ],
     };
@@ -101,8 +170,8 @@ export default {
 
   methods: {
     readData() {
-      return window.api.getMessages().then((response) => {
-        this.rules = response;
+      return window.api.getMessages().then((response: never[]) => {
+        this.data = response;
       });
     },
 
@@ -111,18 +180,17 @@ export default {
     },
 
     onRowClick(evt, row) {
-      if (this.show_dialog === true) {
-        return;
+      if (evt.target.nodeName === 'TD') {
+        this.command = `adminbroadcast ${row.mensagem}`;
+        copyToClipboard(this.command);
+        Notify.create({
+          type: 'positive',
+          timeout: 1000,
+          progress: true,
+          message: 'Copiado para a área de transferência',
+          actions: [{ icon: 'close', color: 'white' }],
+        });
       }
-      this.command = `adminbroadcast ${row.mensagem}`;
-      copyToClipboard(this.command);
-      Notify.create({
-        type: 'positive',
-        timeout: 1000,
-        progress: true,
-        message: 'Copiado para a área de transferência',
-        actions: [{ icon: 'close', color: 'white' }],
-      });
     },
 
     customFilter(rows, terms) {
@@ -152,6 +220,31 @@ export default {
 
       return filteredRows;
     },
+
+    newItem() {
+      this.messageType = 'Nova mensagem';
+      this.message = '';
+      this.messageDialog = true;
+    },
+
+    saveMessage() {
+      window.api.insertData('avisos', this.message);
+      this.readData();
+    },
+
+    editItem(row) {
+      this.messageType = 'Editar mensagem';
+      this.messageDialog = true;
+      this.message = row.row.mensagem;
+    },
+
+    deleteItem(row) {
+      // Ignore a header row and index start 0
+      let rowNumber = row.rowIndex + 2;
+      console.log(rowNumber);
+      window.api.deleteData('avisos', rowNumber);
+      this.readData();
+    },
   },
 };
 </script>
@@ -164,5 +257,9 @@ export default {
 }
 textarea {
   resize: none !important;
+}
+
+.table-height {
+  height: calc(100vh - 300px) !important;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <q-page padding>
     <h6 class="doc-heading doc-h2 text-grey-3">Layers</h6>
-    <div class="col-12">
+    <div class="q-gutter-sm col-12">
       <q-input
         outlined
         dense

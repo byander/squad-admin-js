@@ -18,47 +18,20 @@
 
 const { contextBridge } = require('electron');
 import { BrowserWindow } from '@electron/remote';
-
-// import sqlite3 from 'sqlite3';
 import path from 'path';
+
 const ExcelJS = require('exceljs');
 
-// let dbPath = null;
-let excelPath;
+let excelPath: string;
 const workbook = new ExcelJS.Workbook();
 
 if (process.env.DEBUGGING) {
-  // dbPath = path.resolve('./database/database.db');
   excelPath = path.resolve('./database/dados.xlsx');
 } else {
-  // dbPath = path.resolve(process.resourcesPath, 'database', 'database.db');
   excelPath = path.resolve(process.resourcesPath, 'database', 'dados.xlsx');
 }
 
-// const db = new sqlite3.Database(dbPath, (err) => {
-//   if (err) {
-//     //console.log(err);
-//   } else {
-//     //console.log('db opened');
-//   }
-// });
-
-// const getRulesData = () => {
-//   const sql = 'SELECT * from rules order by id';
-//   return new Promise(function (resolve, reject) {
-//     db.serialize(() => {
-//       db.all(sql, [], (err, rows) => {
-//         if (!err) {
-//           resolve(rows);
-//         } else {
-//           reject(err);
-//         }
-//       });
-//     });
-//   });
-// };
-
-async function getData(sheetName) {
+async function getData(sheetName: string) {
   const data = [];
   await workbook.xlsx.readFile(excelPath).then(() => {
     const worksheet = workbook.getWorksheet(sheetName);
@@ -77,9 +50,38 @@ async function getData(sheetName) {
   return data;
 }
 
-// const getRules = () => {
-//   return getRulesData();
-// };
+async function insertData(sheetName: string, text: string) {
+  console.log(sheetName);
+  if (sheetName === '' || sheetName === undefined) {
+    return;
+  }
+  await workbook.xlsx.readFile(excelPath).then(() => {
+    const worksheet = workbook.getWorksheet(sheetName);
+    const lastRow = worksheet.lastRow._number + 1;
+    const row = worksheet.getRow(lastRow);
+    row.getCell(1).value = text;
+    row.commit();
+    workbook.xlsx.writeFile(excelPath);
+  });
+}
+
+async function deleteData(sheetName: string, rowNumber: number) {
+  console.log(sheetName);
+  if (sheetName === '' || sheetName === undefined) {
+    return;
+  }
+  await workbook.xlsx.readFile(excelPath).then(() => {
+    const worksheet = workbook.getWorksheet(sheetName);
+
+    const lastRow = worksheet.lastRow._number;
+    if (lastRow === rowNumber) {
+      worksheet.spliceRows(rowNumber, 1, []);
+    } else {
+      worksheet.spliceRows(rowNumber, 1);
+    }
+    workbook.xlsx.writeFile(excelPath);
+  });
+}
 
 const getRules = () => {
   return getData('regras');
@@ -146,4 +148,6 @@ contextBridge.exposeInMainWorld('api', {
   getMessages: getMessages,
   getCommands: getCommands,
   getReasonsKickBan: getReasonsKickBan,
+  insertData: insertData,
+  deleteData: deleteData,
 });

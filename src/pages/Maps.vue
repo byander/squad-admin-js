@@ -107,7 +107,7 @@
 import { computed, ref } from 'vue';
 import { copyToClipboard, Notify } from 'quasar';
 import { userVote } from 'stores/history';
-import { runInThisContext } from 'vm';
+
 
 export default {
   name: 'MapsPage',
