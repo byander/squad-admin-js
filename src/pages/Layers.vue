@@ -1,14 +1,14 @@
 <template>
   <q-page padding>
     <h6 class="doc-heading doc-h2 text-grey-3">Layers</h6>
-    <div class="col-12">
+    <div class="q-gutter-sm col-12">
       <q-input
         outlined
         dense
         dark
         color="grey-3"
         label="Comando"
-        v-model="command"
+        v-model="store.command"
         type="textarea"
         rows="1"
       >
@@ -35,25 +35,40 @@
             <div class="col-4">
               <q-select
                 outlined
-                use-input
+                bottom-slots
                 dense
-                :options-dense=true
+                :options-dense="true"
                 dark
-                v-model="filterMap"
+                v-model="store.filteredMap"
                 :options="maps"
                 label="Mapa"
-              ></q-select>
+              >
+                <template v-slot:append>
+                  <q-icon
+                    name="close"
+                    @click.stop.prevent="store.filteredMap = ''"
+                    class="cursor-pointer"
+                  ></q-icon>
+                </template>
+              </q-select>
             </div>
             <div class="col-4">
               <q-select
                 outlined
-                use-input
+                bottom-slots
                 dense
-                :options-dense=true
+                :options-dense="true"
                 dark
-                v-model="filterMode"
+                v-model="store.filteredMode"
                 :options="gameMods"
                 label="Modo"
+              >
+                <template v-slot:append>
+                  <q-icon
+                    name="close"
+                    @click.stop.prevent="store.filteredMode = ''"
+                    class="cursor-pointer"
+                  ></q-icon> </template
               ></q-select>
             </div>
           </div>
@@ -64,30 +79,43 @@
 </template>
 
 <script lang="ts">
+import { ref } from 'vue';
 import { copyToClipboard, Notify } from 'quasar';
+import { allMapsModes } from 'stores/history';
 
 export default {
   name: 'LayersPage',
 
-  data() {
+  setup() {
+    const store = allMapsModes();
+
+    const command = ref('');
+    const data = ref([]);
+    const maps = ref([]);
+    const gameMods = ref([]);
+    const filteredMap = ref('');
+    const filteredMode = ref('');
+    const lowerSearch = ref('');
+    const search = ref('');
+
     return {
-      command: '',
-      search: '',
-      lowerSearch: '',
-      filterMap: null,
-      filterMode: null,
-      model: '',
-      data: [],
-      maps: [],
-      gameMods: [],
+      store,
+      command,
+      search,
+      lowerSearch,
+      filteredMap,
+      filteredMode,
+      data,
+      maps,
+      gameMods,
       columns: [
         {
           name: 'Mapa',
           required: true,
           label: 'Mapa',
           align: 'left',
-          field: (row) => row.map,
-          format: (val) => `${val}`,
+          field: (row: any[]) => row.map,
+          format: (val: any) => `${val}`,
           sortable: false,
         },
         {
@@ -95,8 +123,8 @@ export default {
           required: true,
           label: 'Layer',
           align: 'left',
-          field: (row) => row.layer,
-          format: (val) => `${val}`,
+          field: (row: { layer: any }) => row.layer,
+          format: (val: any) => `${val}`,
           sortable: false,
           // style: 'max-width: 600px',
         },
@@ -105,8 +133,9 @@ export default {
           required: true,
           label: 'Hora',
           align: 'left',
-          field: (row) => row.time_day,
-          format: (val) => `${val}`,
+          field: (row: { time_day: string }) =>
+            row.time_day ? row.time_day : '',
+          format: (val: any) => `${val}`,
           sortable: false,
         },
         {
@@ -114,8 +143,8 @@ export default {
           required: true,
           label: 'Modo',
           align: 'left',
-          field: (row) => row.type,
-          format: (val) => `${val}`,
+          field: (row: { type: '' }) => row.type,
+          format: (val: any) => `${val}`,
           sortable: false,
         },
         {
@@ -123,8 +152,8 @@ export default {
           required: true,
           label: 'Time 1',
           align: 'left',
-          field: (row) => row.team1,
-          format: (val) => `${val}`,
+          field: (row: { team1: '' }) => row.team1,
+          format: (val: any) => `${val}`,
           sortable: false,
         },
         {
@@ -132,8 +161,8 @@ export default {
           required: true,
           label: 'Tickets 1',
           align: 'left',
-          field: (row) => row.tickets1,
-          format: (val) => `${val}`,
+          field: (row: { tickets1: '' }) => row.tickets1,
+          format: (val: any) => `${val}`,
           sortable: false,
         },
         {
@@ -141,8 +170,8 @@ export default {
           required: true,
           label: 'Tanks 1',
           align: 'left',
-          field: (row) => row.tanks1,
-          format: (val) => `${val}`,
+          field: (row: { tanks1: string }) => (row.tanks1 ? row.tanks1 : ''),
+          format: (val: any) => `${val}`,
           sortable: false,
         },
         {
@@ -150,8 +179,8 @@ export default {
           required: true,
           label: 'Heli 1',
           align: 'left',
-          field: (row) => row.heli1,
-          format: (val) => `${val}`,
+          field: (row: { heli1: '' }) => (row.heli1 ? row.heli1 : ''),
+          format: (val: any) => `${val}`,
           sortable: false,
         },
         {
@@ -159,8 +188,8 @@ export default {
           required: true,
           label: 'Time 2',
           align: 'left',
-          field: (row) => row.team2,
-          format: (val) => `${val}`,
+          field: (row: { team2: '' }) => row.team2,
+          format: (val: any) => `${val}`,
           sortable: false,
         },
         {
@@ -168,8 +197,8 @@ export default {
           required: true,
           label: 'Tickets 2',
           align: 'left',
-          field: (row) => row.tickets2,
-          format: (val) => `${val}`,
+          field: (row: { tickets2: any }) => row.tickets2,
+          format: (val: any) => `${val}`,
           sortable: false,
         },
         {
@@ -177,8 +206,8 @@ export default {
           required: true,
           label: 'Tanks 2',
           align: 'left',
-          field: (row) => row.tanks2,
-          format: (val) => `${val}`,
+          field: (row: { tanks2: any }) => (row.tanks2 ? row.tanks2 : ''),
+          format: (val: any) => `${val}`,
           sortable: false,
         },
         {
@@ -186,8 +215,8 @@ export default {
           required: true,
           label: 'Heli 2',
           align: 'left',
-          field: (row) => row.heli2,
-          format: (val) => `${val}`,
+          field: (row: { heli2: any }) => (row.heli2 ? row.heli2 : ''),
+          format: (val: any) => `${val}`,
           sortable: false,
         },
       ],
@@ -201,38 +230,39 @@ export default {
       };
     },
   },
+
   mounted() {
     this.readData();
     this.readMaps();
     this.readGameMode();
   },
   methods: {
-
     readData() {
-      return window.api.getLayers().then((response) => {
+      return window.api.getLayers().then((response: never[]) => {
         this.data = response;
       });
     },
 
     readMaps() {
-      return window.api.getMaps().then((response) => {
-        response.forEach((el) => {
+      return window.api.getMaps().then((response: never[]) => {
+        response.forEach((el: never[]) => {
           this.maps.push(el.map);
         });
       });
     },
 
     readGameMode() {
-      return window.api.getGameMode().then((response) => {
-        response.forEach((el) => {
+      return window.api.getGameMode().then((response: never[]) => {
+        response.forEach((el: { modo: never }) => {
           this.gameMods.push(el.modo);
         });
       });
     },
 
-
-    onRowClick(evt, row) {
+    onRowClick(evt: any, row: { layer: any }) {
       this.command = `AdminSetNextLayer ${row.layer}`;
+      this.store.saveLastCommand(this.command);
+
       copyToClipboard(this.command);
       Notify.create({
         type: 'positive',
@@ -243,39 +273,43 @@ export default {
       });
     },
 
-    customFilter(rows, terms) {
+    customFilter(rows: never[], terms: { search: string }) {
       this.lowerSearch = terms.search ? terms.search.toLowerCase() : '';
 
-      const filteredRows = rows.filter((row, i) => {
-        let ans = false;
-        let s1 = true;
-        let map = true;
-        let mode = true;
-        if (this.filterMap) {
-          map = row.map == this.filterMap;
-        }
-        if (this.filterMode) {
-          mode = row.type == this.filterMode;
-        }
+      this.store.saveSelectedMap(this.store.filteredMap);
+      this.store.saveSelectedMode(this.store.filteredMode);
 
-        if (this.lowerSearch != '') {
-          s1 = false;
-          let s1_values = Object.values(row);
-          let s1_lower = s1_values.map((x) => x.toString().toLowerCase());
 
-          for (let val = 0; val < s1_lower.length; val++) {
-            if (s1_lower[val].includes(this.lowerSearch)) {
-              s1 = true;
-              break;
+      const filteredRows = rows.filter(
+        (row: { [s: string]: unknown } | ArrayLike<unknown>) => {
+          let ans = false;
+          let map = true;
+          let mode = true;
+
+          if (this.store.filteredMap) {
+            map = row.map == this.store.filteredMap;
+          }
+          if (this.store.filteredMode) {
+            mode = row.type == this.store.filteredMode;
+          }
+
+          if (this.lowerSearch != '') {
+            let s1_values = Object.values(row);
+            let s1_lower = s1_values.map((x) => x.toString().toLowerCase());
+
+            for (let val = 0; val < s1_lower.length; val++) {
+              if (s1_lower[val].includes(this.lowerSearch)) {
+                break;
+              }
             }
           }
+          ans = false;
+          if (map && mode) {
+            ans = true;
+          }
+          return ans;
         }
-        ans = false;
-        if (map && mode) {
-          ans = true;
-        }
-        return ans;
-      });
+      );
 
       return filteredRows;
     },

@@ -2,6 +2,7 @@ import { app, BrowserWindow, nativeTheme, globalShortcut } from 'electron';
 import { initialize, enable } from '@electron/remote/main';
 import path from 'path';
 import os from 'os';
+
 let onTop = false;
 
 initialize();
@@ -19,14 +20,60 @@ try {
 
 let mainWindow: BrowserWindow | undefined;
 
+// let window = { x: 0, y: 0 }; // Saved previous window position
+// let screen = electron.screen.getDisplayNearestPoint({
+//   x: window.x,
+//   y: window.y,
+// });
+// if (
+//   !(window.x > screen.bounds.x && window.x < screen.size.width) ||
+//   !(window.y > screen.bounds.y && window.y < screen.size.height)
+// ) {
+//   // The requested position cannot be accesible so the nearest point is applied
+//   window.x = screen.bounds.x;
+//   window.y = screen.bounds.y;
+// }
+
+export const position = () => {
+  const window = { x: 0, y: 0 }; // Saved previous window position
+  const { screen } = require('electron');
+  const screen2 = screen.getDisplayNearestPoint({
+    x: window.x,
+    y: window.y,
+  });
+  if (
+    !(window.x > screen2.bounds.x && window.x < screen2.size.width) ||
+    !(window.y > screen2.bounds.y && window.y < screen2.size.height)
+  ) {
+    // The requested position cannot be accesible so the nearest point is applied
+    window.x = screen2.bounds.x;
+    window.y = screen2.bounds.y;
+  }
+  // Create a window that fills the screen's available work area.
+  const primaryDisplay = screen.getPrimaryDisplay();
+  const { width, height } = primaryDisplay.workAreaSize;
+
+  return {
+    x: window.x,
+    y: window.y,
+    width: width / 2,
+    height: height,
+  };
+};
+
 function createWindow() {
   /**
    * Initial window options
    */
   mainWindow = new BrowserWindow({
     icon: path.resolve(__dirname, 'icons/icon.png'), // tray icon
-    width: 1424,
-    height: 800,
+
+    width: position().width,
+    height: position().height,
+    x: position().x,
+    y: position().y,
+    frame: false,
+
     useContentSize: true,
     autoHideMenuBar: true,
     webPreferences: {
@@ -76,10 +123,19 @@ app
     // Atalho
     globalShortcut.register('Alt+V', () => {
       if (onTop === false) {
-        mainWindow.setAlwaysOnTop(true);
+        if (!mainWindow.isFocused()) {
+          mainWindow.minimize();
+          mainWindow.restore();
+          mainWindow.focus();
+          mainWindow.show();
+        }
+        mainWindow.setAlwaysOnTop(true, 'floating');
         mainWindow.setOpacity(0.7);
         onTop = true;
       } else {
+        mainWindow.minimize();
+        mainWindow.restore();
+        mainWindow.blur();
         mainWindow.setAlwaysOnTop(false);
         mainWindow.setOpacity(1);
         onTop = false;
@@ -94,6 +150,7 @@ app.on('window-all-closed', () => {
   }
 });
 
+app.commandLine.appendSwitch('lang', 'en-US');
 app.on('activate', () => {
   if (mainWindow === undefined) {
     createWindow();
