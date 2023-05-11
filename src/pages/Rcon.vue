@@ -296,6 +296,13 @@
             >
               <q-tooltip>Retirar do esquadrão</q-tooltip>
             </q-btn>
+            <q-btn
+              color="blue"
+              icon="person_search"
+              @click="findSteam(props)"
+            >
+              <q-tooltip>Ver Steam</q-tooltip>
+            </q-btn>
           </q-td>
         </template>
       </q-table>
@@ -541,6 +548,7 @@ export default {
       });
     },
 
+
     quitFromSquad(player) {
       this.command = `AdminRemovePlayerFromSquad ${player.key} `;
 
@@ -553,6 +561,11 @@ export default {
         message: 'Copiado para a área de transferência',
         actions: [{ icon: 'close', color: 'white' }],
       });
+    },
+
+    findSteam(player) {
+      let url = `https://steamcommunity.com/profiles/${player.key}`;
+      open(url);
     },
 
     kickPlayerDialog(player) {

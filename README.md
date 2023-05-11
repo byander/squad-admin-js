@@ -1,41 +1,25 @@
-# Quasar App (squad-tips)
+# Descrição
 
-A Quasar Project
+Aplicativo criado em TypeScript para facilitar a administração do jogo Squad, como envio de regras, aviso aos usuários, etc.
 
-## Install the dependencies
+O aplicativo foi criado com o framework Quasar, VueJS e ElectronJS.
+
+## Instalação para desenvolvimento
+
+Instalação das bibliotecas
 ```bash
-yarn
-# or
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### Iniciar a aplicação no modo de desenvolvimento
 ```bash
-quasar dev
+quasar dev -m electron
 ```
 
+### Construção da aplicação
 
-### Lint the files
+Para construir a aplicação (*Build*) no Windows (.exe)
+
 ```bash
-yarn lint
-# or
-npm run lint
+quasar build -m electron
 ```
-
-
-### Format the files
-```bash
-yarn format
-# or
-npm run format
-```
-
-
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
