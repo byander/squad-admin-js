@@ -141,6 +141,7 @@ contextBridge.exposeInMainWorld('api', {
   setTitle: () => {
     console.log('doAthig');
   },
+
   getRules: getRules,
   getLayers: getLayers,
   getMaps: getMaps,

@@ -9,7 +9,7 @@
           <q-avatar>
             <img src="../assets/icon.png" class="icon" />
           </q-avatar>
-          Squad Admin
+          Squad Admin v{{ appVersion }}
         </q-toolbar-title>
         <q-btn dense flat icon="minimize" @click="minimize"></q-btn>
         <q-btn dense flat icon="crop_square" @click="toggleMaximize"></q-btn>
@@ -125,6 +125,7 @@
 
 <script>
 import { ref } from 'vue';
+import { version } from '../../package';
 
 export default {
   name: 'MainLayout',
@@ -132,6 +133,7 @@ export default {
   setup() {
     const miniState = ref(false);
     const opacity = ref(0.7);
+    const appVersion = ref('');
 
     function minimize() {
       if (process.env.MODE === 'electron') {
@@ -155,6 +157,7 @@ export default {
       drawer: ref(false),
       opacity,
       miniState,
+      appVersion: version,
       minimize,
       toggleMaximize,
       closeApp,
