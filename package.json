@@ -1,7 +1,7 @@
 {
   "name": "squad-admin",
-  "version": "1.0.0",
-  "description": "A Quasar Project",
+  "version": "1.0.2",
+  "description": "Aplicação para auxiliar na administração do servidor",
   "productName": "Squad Admin",
   "author": "",
   "private": true,

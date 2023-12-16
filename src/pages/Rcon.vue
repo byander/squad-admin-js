@@ -217,7 +217,7 @@
         card-class="bg-drawer text-grey-4"
         :rows="store.data"
         :columns="columns"
-        row-key="steamId"
+        row-key="eos"
         :rows-per-page-options="[0]"
         :filter="filter"
         :filter-method="customFilter"
@@ -335,6 +335,7 @@ export default {
     const warnDialog = ref(false);
     const banDialog = ref(false);
     const steamID = ref('');
+    const eos = ref('');
 
     return {
       store,
@@ -352,6 +353,7 @@ export default {
       warnDialog,
       banDialog,
       steamID,
+      eos,
       options: [
         {
           label: 'Kick',
@@ -387,6 +389,16 @@ export default {
           format: (val) => `${val}`,
           sortable: true,
           // style: 'max-width: 600px',
+        },
+        {
+          name: 'eos',
+          required: true,
+          label: 'EOS',
+          align: 'left',
+          field: (row) => row.eos,
+          format: (val) => `${val}`,
+          // format: (val) => `<a :href="/account/offers/edit/">${val}</a>`,
+          sortable: true,
         },
         {
           name: 'steamId',
@@ -481,6 +493,7 @@ export default {
         let test = clipText.split('\n');
         let data: {
           id: string;
+          eos: string;
           steamId: string;
           name: string;
           teamId: string;
@@ -495,6 +508,7 @@ export default {
 
           if (row.length === 7) {
             let id = row[0].split(':');
+            let eos = row[1].split(':');
             let steamId = row[1].split(':');
             let name = row[2].split(':');
             let teamId = row[3].split(':');
@@ -504,7 +518,8 @@ export default {
 
             data.push({
               id: id[1].trim(),
-              steamId: steamId[1].trim(),
+              eos: eos[2].split('steam')[0].trim(),
+              steamId: steamId[3].trim(),
               name: name[1].trim(),
               teamId: teamId[1].trim(),
               squadId: squadId[1].trim(),
@@ -515,11 +530,13 @@ export default {
           }
           if (row.length === 4) {
             let id = row[0].split(':');
+            let eos = row[1].split(':');
             let steamId = row[1].split(':');
             let name = row[3].split(':');
             data.push({
               id: id[1].trim(),
-              steamId: steamId[1].trim(),
+              eos: eos[2].split('steam')[0].trim(),
+              steamId: steamId[3].trim(),
               name: name[1].trim(),
               teamId: '-',
               squadId: '-',
@@ -570,26 +587,30 @@ export default {
 
     kickPlayerDialog(player) {
       this.kickDialog = true;
-      this.steamID = player.key;
+      this.eos = player.key;
     },
 
     kickPlayer() {
-      this.command = `AdminKick ${this.steamID} ${this.reason}`;
+      this.command = `AdminKick ${this.eos} ${this.reason}`;
       this.store.saveLastCommand(this.command);
       this.copyCommand();
     },
 
     banPlayerDialog(player) {
+      // console.log(player.row.steamId)
       this.banDialog = true;
-      this.steamID = player.key;
+      this.eos = player.key;
+      this.steamID = player.row.steamId;
+      // console.log(this.steamID)
     },
 
     banPlayer() {
+      console.log(this.steamID)
       if (this.value === 0) {
-        this.command = `AdminBan ${this.steamID} 0 Banido permanentemente por: ${this.reason}`;
+        this.command = `AdminBan ${this.eos} 0 Banido permanentemente por: ${this.reason} (${this.steamID})`;
       } else {
         let banLength = `${this.value}${this.groupTime}`;
-        this.command = `AdminBan ${this.steamID} ${banLength} Banido temporariamente por: ${this.reason} (${banLength})`;
+        this.command = `AdminBan ${this.eos} ${banLength} Banido temporariamente por: ${this.reason} (${banLength}) ${this.reason} (${this.steamID})`;
       }
       // this.command = `AdminBan ${this.steamID} ${this.reason}`;
       this.store.saveLastCommand(this.command);
