@@ -289,18 +289,10 @@
             >
               <q-tooltip>Trocar de time</q-tooltip>
             </q-btn>
-            <q-btn
-              color="green"
-              icon="logout"
-              @click="quitFromSquad(props)"
-            >
+            <q-btn color="green" icon="logout" @click="quitFromSquad(props)">
               <q-tooltip>Retirar do esquadrão</q-tooltip>
             </q-btn>
-            <q-btn
-              color="blue"
-              icon="person_search"
-              @click="findSteam(props)"
-            >
+            <q-btn color="blue" icon="person_search" @click="findSteam(props)">
               <q-tooltip>Ver Steam</q-tooltip>
             </q-btn>
           </q-td>
@@ -312,7 +304,7 @@
 
 <script lang="ts">
 import { copyToClipboard, Notify } from 'quasar';
-import { ref } from 'vue';
+import { ref, isProxy, toRaw } from 'vue';
 import { storeRcon } from 'stores/history';
 
 export default {
@@ -516,12 +508,26 @@ export default {
             let isLeader = row[5].split(':');
             let role = row[6].split(':');
 
+            let eosID = '-';
+            try {
+              eosID = eos[2].split('steam')[0].trim();
+              steamId = steamId[3].trim();
+            } catch (error) {
+              eosID = eos[2].trim();
+              steamId = '-';
+            }
+            // try {
+            //   eos[2].split('steam')[0].trim();
+            // } catch (error) {
+            //   steamId = '-';
+            // }
+
             data.push({
-              id: id[1].trim(),
-              eos: eos[2].split('steam')[0].trim(),
-              steamId: steamId[3].trim(),
+              id: parseInt(id[1].trim()),
+              eos: eosID,
+              steamId: steamId,
               name: name[1].trim(),
-              teamId: teamId[1].trim(),
+              teamId: parseInt(teamId[1].trim()),
               squadId: squadId[1].trim(),
               isLeader: isLeader[1].trim(),
               role: role[1].trim(),
@@ -534,7 +540,7 @@ export default {
             let steamId = row[1].split(':');
             let name = row[3].split(':');
             data.push({
-              id: id[1].trim(),
+              id: parseInt(id[1].trim()),
               eos: eos[2].split('steam')[0].trim(),
               steamId: steamId[3].trim(),
               name: name[1].trim(),
@@ -565,7 +571,6 @@ export default {
       });
     },
 
-
     quitFromSquad(player) {
       this.command = `AdminRemovePlayerFromSquad ${player.key} `;
 
@@ -581,8 +586,17 @@ export default {
     },
 
     findSteam(player) {
-      let url = `https://steamcommunity.com/profiles/${player.key}`;
-      open(url);
+      // console.log(this.store.data[0])
+      let filtered = this.store.data.filter((x) => x.eos === player.key);
+      const rawObjectOrArray = toRaw(filtered)
+      // const target_copy = Object.assign({}, filtered);
+      // console.log(target_copy[0].steamId)
+      console.log(rawObjectOrArray[0].steamId)
+      const steamId = rawObjectOrArray[0].steamId;
+      if (steamId != undefined) {
+        const url = `https://steamcommunity.com/profiles/${steamId}`;
+        open(url);
+      }
     },
 
     kickPlayerDialog(player) {
@@ -605,7 +619,7 @@ export default {
     },
 
     banPlayer() {
-      console.log(this.steamID)
+      console.log(this.steamID);
       if (this.value === 0) {
         this.command = `AdminBan ${this.eos} 0 Banido permanentemente por: ${this.reason} (${this.steamID})`;
       } else {
